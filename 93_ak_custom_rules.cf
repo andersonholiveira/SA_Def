@@ -1,0 +1,94 @@
+##
+## AK Custom Spamassassin rules
+## https://github.com/alasdairkeyes/ak-custom-spamassassin-rules
+## 
+
+
+describe    AK_REPLY_TO_REACTIV     Message from Reactiv Media
+header      AK_REPLY_TO_REACTIV     Reply-To =~ /reactiv\-?(online|media)/i
+score       AK_REPLY_TO_REACTIV     8.0
+
+
+describe    AK_NO_GREETING_NAME     No name in the message greeting
+body        AK_NO_GREETING_NAME     /^(Dear|To)\s+?,?$/i
+score       AK_NO_GREETING_NAME     7.0
+
+
+describe    AK_GREETING_HEY     Greeting contains only Hey
+body        AK_GREETING_HEY     /^Hey,?$/i
+score       AK_GREETING_HEY     1.0
+
+
+describe    AK_ANON_RECIP   Email refers to recipient as friend, pal or similar
+body        AK_ANON_RECIP   /(Hi|Hey)\s+.*(Friend|Pal)$/i
+score       AK_ANON_RECIP   7.0
+
+
+describe    AK_REMITTANCE_ADVICE    Subject talks about remittance advice
+header      AK_REMITTANCE_ADVICE    Subject =~ /remittance (advice|details)/i
+score       AK_REMITTANCE_ADVICE    8.0
+
+
+describe    AK_SPAM_JOB_SUBJECT     Subject talks of business or job cooperation
+header      AK_SPAM_JOB_SUBJECT     Subject =~ /(beneficial|cooperation|flexible)/i
+score       AK_SPAM_JOB_SUBJECT     4.0
+
+
+describe    AK_COMMON_SPAM1     Common HTML color used in spam from particular spammer
+rawbody     AK_COMMON_SPAM1     /color:\#a98d5a;">/i
+score       AK_COMMON_SPAM1     10
+
+
+describe    AK_COMMUNICCADO_SPAM1   Block Communiccado spam footer
+rawbody     AK_COMMUNICCADO_SPAM1   /This email is being sent to you by Communiccado/
+score       AK_COMMUNICCADO_SPAM1   10
+
+
+describe    AK_PHP_SCRIPT_1     Mail sent from PHP using an eval
+header      AK_PHP_SCRIPT_1     X-PHP-Originating-Script =~ /eval/i
+score       AK_PHP_SCRIPT_1     6.0
+
+
+describe    AK_PHP_SCRIPT_2     Mail sent from PHP 
+header      AK_PHP_SCRIPT_2     X-PHP-Script =~ /for/i
+score       AK_PHP_SCRIPT_2     1.0
+
+
+describe    AK_SWOOSH_RETURN_PATH   Return path from a known domain related to swooosh marketing
+header      AK_SWOOSH_RETURN_PATH   Return-Path =~ /(safesending.com|ipurus.co.uk|ipurus.com)/i
+score       AK_SWOOSH_RETURN_PATH   3.0
+
+
+describe    AK_SEX_BODY     Common sex related content
+rawbody     AK_SEX_BODY     /\b(0rgasm|f[^aeiu]ck|sxx|c0ck|c\*m|pu\$\$y|h00k|1ike|b00b|p1cs|0ral|deepthr0at|bl[^o]wj[^o]b|hardc[^o]re|\@nal|\$ex|wh0re|cock|pussy)\b/i
+score       AK_SEX_BODY     5.0
+
+
+describe    AK_SEX_SUBJECT  Common sex related subject
+header      AK_SEX_SUBJECT  Subject =~ /\b(0rgasm|f[^aeiu]ck|sxx|c0ck|c\*m|pu\$\$y|h00k|1ike|b00b|p1cs|0ral|deepthr0at|bl[^o]wj[^o]b|hardc[^o]re|\@nal|\$ex|wh0re|cock|pussy)\b/i
+score       AK_SEX_SUBJECT  5.0
+
+
+describe    AK_STEP1_REGISTRATION Contains step1 of your registration process
+rawbody     AK_STEP1_REGISTRATION /Step 1 of your registration process/i
+score       AK_STEP1_REGISTRATION 5.0
+
+
+describe    AK_KEYMAN_FROM  Keyman insurance
+header      AK_KEYMAN_FROM  From =~ /Key(man) insurance/i
+score       AK_KEYMAN_FROM  5.0
+
+
+describe    AK_INSURANCE_SUBJECT    Life insurance Subject
+header      AK_INSURANCE_SUBJECT    Subject =~ /(your\s*life|health)\s+cover/i
+score       AK_INSURANCE_SUBJECT    4.0
+
+
+describe    AK_INSURANCE_FROM       Life insurance From
+header      AK_INSURANCE_FROM       From =~ /(your\s*life|health)\s+cover/i
+score       AK_INSURANCE_FROM       4.0
+
+
+describe    AK_SPACE_START_FROM     From header contains a space at the start
+header      AK_SPACE_START_FROM     From =~ /^"?\s/
+score       AK_SPACE_START_FROM     2.0

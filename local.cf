@@ -1,0 +1,405 @@
+####
+# 
+
+###########################################################################
+#  Ultima Alteracao - 01/12/2016
+########################################################################### 
+
+
+#   Set the threshold at which a message is considered spam (default: 5.0)
+#
+required_score 5.0
+
+## Configuracoes coustomizadas
+
+#loadplugin Mail::SpamAssassin::Plugin::ResourceLimits
+ loadplugin Mail::SpamAssassin::Plugin::URIDNSBL
+ 
+# Hashcash - perform hashcash verification.
+#
+loadplugin Mail::SpamAssassin::Plugin::Hashcash
+
+# SPF - perform SPF verification.
+#
+loadplugin Mail::SpamAssassin::Plugin::SPF
+
+# Pyzor - perform Pyzor message checks.
+#
+loadplugin Mail::SpamAssassin::Plugin::Pyzor
+ 
+# DCC - Load DCC Modules
+loadplugin Mail::SpamAssassin::Plugin::DCC
+ 
+# Razor2 - Load Razor2
+loadplugin Mail::SpamAssassin::Plugin::Razor2
+
+# SpamCOP
+loadplugin Mail::SpamAssassin::Plugin::SpamCop
+#
+# AWL - do auto-whitelist checks
+#
+loadplugin Mail::SpamAssassin::Plugin::AWL
+#
+# AutoLearnThreshold - threshold-based discriminator for Bayes auto-learning
+#
+loadplugin Mail::SpamAssassin::Plugin::AutoLearnThreshold
+
+# WhitelistSubject - Whitelist/Blacklist certain subject regular expressions
+#
+loadplugin Mail::SpamAssassin::Plugin::WhiteListSubject
+
+# DomainKeys - perform DomainKeys verification
+#
+# External modules required for use, see INSTALL for more information.
+#
+#loadplugin Mail::SpamAssassin::Plugin::DomainKeys
+
+# MIMEHeader - apply regexp rules against MIME headers in the message
+#
+loadplugin Mail::SpamAssassin::Plugin::MIMEHeader
+
+# ReplaceTags
+#
+loadplugin Mail::SpamAssassin::Plugin::ReplaceTags
+
+# DKIM - perform DKIM verification
+#
+# Mail::DKIM module required for use, see INSTALL for more information.
+#
+loadplugin Mail::SpamAssassin::Plugin::DKIM
+
+required_hits           5
+
+# Whitelists
+whitelist_from_rcvd *@medicina-digital.com medicina-digital.com
+whitelist_from_rcvd *@schutz.com.br schutz.com.br
+whitelist_from_rcvd *@hugolinoandrade.com.br hugolinoandrade.com.br
+whitelist_from_rcvd *@support.trendmicro.com support.trendmicro.com
+whitelist_from_rcvd *@mailca.custhelp.com mailca.custhelp.com
+whitelist_from_rcvd *@technobox.com.br technobox.com.br
+whitelist_from_rcvd *@labhpardini.com.br labhpardini.com.br
+whitelist_from_rcvd *@ibama.gov.br ibama.gov.br
+whitelist_from_rcvd *@wt.ag wt.ag
+whitelist_from cris@wt.ag
+whitelist_from_rcvd *@dinamize.net dinamize.net
+whitelist_from *@wt.ag
+whitelist_from *@dinamize.com
+whitelist_from *@email.freshdesk.com
+whitelist_from *@ceciliacosta.com.br
+whitelist_from *@gsconta.com.br
+whitelist_from *@digitaldesk.com.br
+whitelist_from *@lealcasalimpa.com.br
+whitelist_from *@connectiontelecom.com.br
+whitelist_from *@unescon-di.com.br
+whitelist_from *@amcm.ind.br
+whitelist_from *@lavanderiabbc.com.br
+whitelist_from *@ecocentro.com.br
+whitelist_from *@expandeconsultoria.com.br
+whitelist_from *@avsliberadora.com.br
+whitelist_from *@vogeltelecom.com
+whitelist_from *@courosul.com
+whitelist_from *@expandeconsultoria.com.br
+whitelist_from *@avsliberadora.com.br
+whitelist_from *@vetorial.net
+whitelist_from *@oobj.com.br
+whitelist_from *@tomoclinica.com.br
+whitelist_from *@werlewear.com.br
+whitelist_from *@dell.com
+whitelist_from *@virtos.com.br
+whitelist_from *@wallin.com.br
+whitelist_from *@jofer.ind.br
+whitelist_from *@hospsaojose.com.br
+whitelist_from *@clinoson.com.br
+whitelist_from *@t-comp.inf.br
+whitelist_from *@portoweb.com.br
+whitelist_from *@egrala.com.br
+whitelist_from *@sinostur.com.br
+whitelist_from *@kasakayser.com.br
+whitelist_from *@rua.com.br
+whitelist_from *@citolab.med.br
+whitelist_from *@eccel.ind.br
+whitelist_from *@raiosom.com.br
+whitelist_from *@mundodacriancars.com.br
+whitelist_from *@doisirmaos.rs.gov.br
+whitelist_from *@seisb.com.br
+whitelist_from *@solutionlaser.ind.br
+whitelist_from *@protector-rs.com.br
+whitelist_from *@zetanet.com.br
+whitelist_from *@vistos-rs.com.br
+whitelist_from *@imploc.com.br
+whitelist_from *@trevoestruturas.com.br
+whitelist_from *@planetbolsas.com.br
+whitelist_from *@grupodobler.com.br
+whitelist_from *@redemacjm.com.br
+whitelist_from *@grafotermo.com.br
+whitelist_from *@patologiaicap.com.br
+whitelist_from *@dmaise.com.br
+whitelist_from *@lupagraf.com.br
+whitelist_from *@gmail.com
+whitelist_from *@contabilschneider.com.br
+whitelist_from *@ecosson.com.br
+whitelist_from *@garridoetozzi.com.br
+whitelist_from *@viauno.com
+whitelist_from *@leste-rs.com.br
+whitelist_from *@sublimemoveis.com
+whitelist_from *@primaverainjetados.com.br
+whitelist_from *@machadoti.com.br
+whitelist_from *@clinicadeanestesiologia.com.br
+whitelist_from *@vorticecomunicacao.com.br
+whitelist_from *@schmidt.ind.br
+whitelist_from *@rejosmaxiplast.com.br
+whitelist_from *@aevas.org.br
+whitelist_from *@fleinglab.com.br
+whitelist_from *@terra.com.br
+whitelist_from *@budapostos.com.br
+whitelist_from *@bagsagga.com.br
+whitelist_from *@trevoestrututas.com.br
+whitelist_from *@ccontador.com.brbernardo@prontomed.com.br
+whitelist_from *@prontomed.com.br
+whitelist_from *@doisirmaos.rs.gov.br
+whitelist_from *@telefonica.com
+whitelist_from *@accopias.com.br
+whitelist_from *@braun.adv.br
+whitelist_from *@herval.com.br
+whitelist_from *@empresas.dell.com
+whitelist_from *@hsac.com.br
+whitelist_from *@scheva.com.br
+whitelist_from *@speedhost.com.br
+whitelist_from *@globalsign.com
+
+# Blacklist(emails bloqueados)
+blacklist_from *@helicenews.com.br
+blacklist_from *@spvir.com.br
+blacklist_from *@e-guiafive.net.br
+blacklist_from *@vitrinedoaprender.com.br
+blacklist_from *@margam.com.br
+blacklist_from *mailbit.com.br
+blacklist_from *guiaeight.net.br
+blacklist_from *@fernam.com.br
+blacklist_from *@lanfangfashion.com
+blacklist_from *@enviapromo.net.br
+blacklist_from *@descontissimos.com.br
+blacklist_from *@wardez.com.br
+blacklist_from *@globalassessoria.top
+blacklist_from *@aliprof.com.br
+blacklist_from *@annunziata.com.br
+blacklist_from *@premiador1.com.br
+blacklist_from *@radiocom.com.br
+blacklist_from *@i-leadsbr.com
+blacklist_from *@autonorte.com.br
+blacklist_from *@planodesaudeempresarial.me
+blacklist_from *@cadince.com.br
+blacklist_from *@lojaeldorado.com
+blacklist_from *@macapura.com.br
+blacklist_from *@milleniumgroup.top
+blacklist_from *@aggrofinanceira.top
+blacklist_from *@neobmb.com.br
+blacklist_from *@carta4.from-mt.com
+blacklist_from *@bxdz.dynu.com
+blacklist_from *@mandatudo.net.br
+blacklist_from *@papesi.com.br
+blacklist_from *@geobmb.com.br
+blacklist_from *@frace.com.br
+blacklist_from laurentia@laurentia.com.br
+blacklist_from *@wc3site.com.br
+blacklist_from contato@livetom.com.br
+blacklist_from *@7sete7corp.com
+blacklist_from *@dprox.com.br
+blacklist_from *@oba.com.co
+blacklist_from *@graficacrivella.com.br
+blacklist_from *@dprox.com.br
+blacklist_from *@graficacrivella.com.br
+blacklist_from *@mkt.cupom4.com.br
+blacklist_from *@e.bras1.net.br
+blacklist_from *@letram.com.br
+blacklist_from *@abraselx.com.br
+blacklist_from *@shennon.com.br
+blacklist_from *@duzentosporcento.com.br
+blacklist_from *@mailvert.com.br
+blacklist_from pag-seguro*@*.members.linode.com
+blacklist_from digitalnoticias.info
+blacklist_from *@planosunimedcredenciada.com.br
+blacklist_from *@*eficient1.com.br
+blacklist_from contatos@agencia20*.com.br
+blacklist_from *@mcnerc.com
+blacklist_from marketing@f1solucoes.com.br
+blacklist_from *@brasilcomercial.net.br
+blacklist_from *@solucaodesaude.com.br
+blacklist_from *@culturatotal.ovh
+blacklist_from *@lukesky.com.br
+blacklist_from *@sdtelx.com.br
+blacklist_from contatos@projetosaudemais.com.br
+blacklist_from novidades@ovsd.com.br
+blacklist_from contato@bgwmarketing.com.br
+blacklist_from contato@hottmail.com.br
+blacklist_from mail@midialead.com.br
+blacklist_from contato@agorapreco.com.br
+blacklist_from *@marketingpdbr.com.br
+blacklist_from *@molinaviajes.com
+blacklist_from *@qhapii.com.cn
+blacklist_from send@cupomzoomp.com.br
+blacklist_from *@dctcomercial.com.br
+blacklist_from autos@vipm.net.br
+blacklist_from envio@contatodireto.net.br
+blacklist_from *@consorcioefinanciamento.com
+blacklist_from *@vegdemarca.com.br
+blacklist_from *@noticia04.com.br
+blacklist_from *@americaofertas.com.br
+blacklist_from *@promocaoprodutos.com.br
+blacklist_from *@oportunidadehoje.com.br
+blacklist_from *@adsensum.com.br
+blacklist_from *@hotcommerce.com.br
+blacklist_from *@compratenisonline.com
+blacklist_from *@informeplanos007.info
+blacklist_from *@mktg8empreendedores.com.br
+blacklist_from *@postmarketingservice.com.br
+blacklist_from *@planosbr.com.br
+blacklist_from *@spcal.com.br
+blacklist_from *@mesverao2.com.br
+blacklist_from *@grupojbssa.ind.br
+blacklist_from *@informacaoqualificada.com.br
+blacklist_from *@smsconecta.com.br
+blacklist_from *@mkt.fmmail.com.br
+blacklist_from *@uranoxmail.com.br
+blacklist_from *@enteressemundial.com.br
+blacklist_from *@copyservices.com.br
+blacklist_from *@afconsultora.com.br
+blacklist_from *@contato@bricam.com.br
+blacklist_from *@brnon.com.br
+blacklist_from *@mutti2.e-nutrifour.com.br
+blacklist_from *@e.digwebin.com.br
+blacklist_from *@macioca2.e-rpsender1.com.br
+blacklist_from *@vejabras.com.br
+blacklist_from *@growcentrals.com.br
+blacklist_from *@z.vejabras.com.br
+blacklist_from *@vejabras.com.br
+blacklist_from *@ofertasbmc.com.br
+blacklist_from *@segrv.com.br
+blacklist_from *@silverhost.biz
+blacklist_from *@onehealth.top
+blacklist_from *@inter2023.com.br
+blacklist_from *@inter2019.com.br
+blacklist_from *@rbcacustica.com.br
+blacklist_from *@m.vejabras.com.br
+blacklist_from *@i.regrageral.com.br
+blacklist_from *@masiero2.e-rpsender2.com.br
+blacklist_from *@inter2020.com.br
+blacklist_from *@planodesaudeempresarial.me
+blacklist_from *@inter2024.com.br
+blacklist_from *@e-guiasix.net.br
+blacklist_from *@globo.com
+blacklist_from *@caixabom.com.br
+blacklist_from *@ofertasbmc.com.br
+blacklist_from *@journone.com.br
+blacklist_from *@bv-financeira.com.br
+blacklist_from *@abraselz.com.br
+blacklist_from *@parceiroshl.com.br
+
+########### Configura consultas de DNS #################
+
+header RCVD_IN_RFC_PM eval:check_rbl('relay', 'postmaster.rfc-ignorant.org.')
+describe RCVD_IN_RFC_PM Received via a relay in postmaster.rfc-ignorant.org
+score RCVD_IN_RFC_PM 2.0
+
+header IN_NJABL_ORG rbleval:check_rbl('njabl','dnsbl.njabl.org.')
+describe IN_NJABL_ORG Received via a relay in dnsbl.njabl.org tflags IN_NJABL_ORG net
+
+header NJABL_OPEN_RELAY rbleval:check_rbl_results_for('njabl', '127.0.0.2')
+describe NJABL_OPEN_RELAY DNSBL: sender is Confirmed Open Relay tflags NJABL_OPEN_RELAY net
+
+header NJABL_DUL rbleval:check_rbl_results_for('njabl', '127.0.0.3')
+describe NJABL_DUL DNSBL: sender ip address in in a dialup block tflags NJABL_DUL net
+
+header NJABL_SPAM_SRC rbleval:check_rbl_results_for('njabl', '127.0.0.4')
+describe NJABL_SPAM_SRC DNSBL: sender is Confirmed Spam Source tflags NJABL_SPAM_SRC net
+
+header NJABL_MULTI_STAGE rbleval:check_rbl_results_for('njabl', '127.0.0.5')
+describe NJABL_MULTI_STAGE DNSBL: sent through multi-stage open relay tflags NJABL_MULTI_STAGE net
+
+header NJABL_CGI rbleval:check_rbl_results_for('njabl', '127.0.0.8')
+describe NJABL_CGI DNSBL: sender is an open formmail tflags NJABL_CGI net
+
+header NJABL_PROXY rbleval:check_rbl_results_for('njabl', '127.0.0.9')
+describe NJABL_PROXY DNSBL: sender is an open proxy tflags NJABL_PROXY net
+
+score IN_NJABL_ORG 0.38
+score NJABL_DUL 0.62
+score NJABL_MULTI_STAGE 0.75
+score NJABL_PROXY 3.00
+score NJABL_OPEN_RELAY 3.00
+score NJABL_CGI 1.50
+score NJABL_SPAM_SRC 3.00
+
+#################################################
+
+# aumenta o score do SPF_FAIL (default 0.992)
+score SPF_FAIL 10.0
+
+# aumenta o score do RCVD_IN_BL_SPAMCOP_NET (default 2.188)
+score RCVD_IN_BL_SPAMCOP_NET 3.0
+# aumenta o score do RCVD_IN_PBL (default 0.509 ---- 8)
+score RCVD_IN_PBL 7.0
+# aumenta o score do RCVD_IN_XBL (default 2.896 ---- 8)
+score RCVD_IN_XBL 7.0
+# aumenta o score do RCVD_IN_SORBS_DUL (default 1.615 ---- 3)
+score RCVD_IN_SORBS_DUL 2.0
+# aumenta o score do URIBL_RHS_ABUSE (default 1 ---- 2)
+score URIBL_RHS_ABUSE 1.7
+
+# Spam Cannibal
+header          RCVD_IN_SC_SPAM         eval:check_rbl('spamcannibal', 'bl.spamcannibal.org.')
+describe        RCVD_IN_SC_SPAM         SpamCannibal: sender is a spam source
+tflags          RCVD_IN_SC_SPAM         net
+score           RCVD_IN_SC_SPAM         1.0
+
+# BarracudaCental.org RBL 
+header		RCVD_IN_BARRACUDA  	rbleval:check_rbl('b-rbl','b.barracudacentral.org.') 
+describe	RCVD_IN_BARRACUDA	Listed: Barracuda Reputation Block List (BRBL) 
+tflags		RCVD_IN_BARRACUDA	net
+score		RCVD_IN_BARRACUDA	1.5
+
+# SPBL
+header		__RCVD_IN_SPFBL		eval:check_rbl('spfbl-lastexternal','dnsbl.spfbl.net.')
+describe	__RCVD_IN_SPFBL		Listed in dnsbl.spfbl.net.
+tflags		__RCVD_IN_SPFBL		net
+score		__RCVD_IN_SPFBL		1.5
+
+# WPL
+header		RCVD_IN_WPBL		eval:check_rbl('wpbl-lastexternal','db.wpbl.info.','127.0.0.2')
+describe	RCVD_IN_WPBL		Listed in wpbl
+tflags		RCVD_IN_WPBL		net
+score		RCVD_IN_WPBL		1.5
+
+# Composite
+header		RCVD_IN_CBL		eval:check_rbl('cbl-lastexternal','cbl.abuseat.org.')
+describe	RCVD_IN_CBL		Listed in cbl.abuseat.org
+tflags		RCVD_IN_CBL		net
+score		RCVD_IN_CBL		2.0 # please adjust score value
+
+#########################################################################################################
+
+# Definicoes de parametros para o Bayes.
+use_bayes 0
+#bayes_min_ham_num       30
+#bayes_min_spam_num      50
+#bayes_auto_learn 0
+#bayes_ignore_header X-Bogosity
+#bayes_ignore_header X-Spam-Flag
+#bayes_ignore_header X-Spam-Status
+#bayes_ignore_header X-Spam-Score
+#bayes_ignore_header X-Scanned-By
+
+# Ativando determinadas checagens
+use_pyzor 1
+use_razor2 1
+use_dcc 1
+
+########## Ler lista de palavras customizada #########
+## Lista personalizada
+include /etc/mail/spamassassin/rulespersonal.lst
+ 
+## Lista ptbr criada pela comunidade
+include /etc/mail/spamassassin/rulesbr.lst
+
+# Lista de dominios enviando virus atualizada automaticamente
+include /etc/mail/spamassassin/rulesmalware.lst
