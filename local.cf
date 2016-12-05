@@ -1,6 +1,4 @@
-####
-# 
-
+## Antispam 
 ###########################################################################
 #  Ultima Alteracao - 01/12/2016
 ########################################################################### 
@@ -167,7 +165,10 @@ whitelist_from *@scheva.com.br
 whitelist_from *@speedhost.com.br
 whitelist_from *@globalsign.com
 
-# Blacklist(emails bloqueados)
+ #--------------------------------------------------------------
+
+blacklist_from *@ls.findersenderd.com.br
+blacklist_from *@mainbrookes.com.br
 blacklist_from *@helicenews.com.br
 blacklist_from *@spvir.com.br
 blacklist_from *@e-guiafive.net.br
@@ -350,31 +351,37 @@ score URIBL_RHS_ABUSE 1.7
 header          RCVD_IN_SC_SPAM         eval:check_rbl('spamcannibal', 'bl.spamcannibal.org.')
 describe        RCVD_IN_SC_SPAM         SpamCannibal: sender is a spam source
 tflags          RCVD_IN_SC_SPAM         net
-score           RCVD_IN_SC_SPAM         1.0
+score           RCVD_IN_SC_SPAM         1.5
 
 # BarracudaCental.org RBL 
 header		RCVD_IN_BARRACUDA  	rbleval:check_rbl('b-rbl','b.barracudacentral.org.') 
 describe	RCVD_IN_BARRACUDA	Listed: Barracuda Reputation Block List (BRBL) 
 tflags		RCVD_IN_BARRACUDA	net
-score		RCVD_IN_BARRACUDA	1.5
+score		RCVD_IN_BARRACUDA	2.0
 
 # SPBL
 header		__RCVD_IN_SPFBL		eval:check_rbl('spfbl-lastexternal','dnsbl.spfbl.net.')
 describe	__RCVD_IN_SPFBL		Listed in dnsbl.spfbl.net.
 tflags		__RCVD_IN_SPFBL		net
-score		__RCVD_IN_SPFBL		1.5
+score		__RCVD_IN_SPFBL		2.0
 
 # WPL
 header		RCVD_IN_WPBL		eval:check_rbl('wpbl-lastexternal','db.wpbl.info.','127.0.0.2')
 describe	RCVD_IN_WPBL		Listed in wpbl
 tflags		RCVD_IN_WPBL		net
-score		RCVD_IN_WPBL		1.5
+score		RCVD_IN_WPBL		2.0
 
 # Composite
 header		RCVD_IN_CBL		eval:check_rbl('cbl-lastexternal','cbl.abuseat.org.')
 describe	RCVD_IN_CBL		Listed in cbl.abuseat.org
 tflags		RCVD_IN_CBL		net
-score		RCVD_IN_CBL		2.0 # please adjust score value
+score		RCVD_IN_CBL		2.0
+
+# JMF
+header		RCVD_IN_JMF_BL		eval:check_rbl_sub('JMF-lastexternal','127.0.0.2')
+describe	RCVD_IN_JMF_BL		Sender listed in JMF-BLACK
+tflags		RCVD_IN_JMF_BL		net
+score       RCVD_IN_JMF_BL    	1.5
 
 #########################################################################################################
 
