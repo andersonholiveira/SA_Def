@@ -1,5 +1,5 @@
 ##################################################
-### Ultima revisao - 05/12/2016
+### Ultima revisao - 06/12/2016
 ### Anderson Oliveira - anderson.oliveira54@gmail.com | Skype: andersonh.oliveira
 ##################################################
 #
@@ -41,7 +41,6 @@ describe NO_SOCIESC Possivel Spam da SOCIESC
 describe NO_CNI Spam enviado pela cni.org.br
 describe NO_BOLETO Encontrado relacao com Boleto Anexado
 describe NO_COMPROVANTE Encontrado Palavra Comprovante
-describe BAD_ATACH Encontrado relacao com Anexo de foto em texto PossivelVirus
 describe NO_CHEQUE Encontrado relacao com Cheque anexado PossivelVirus
 describe NO_ANUNCIE Encontrado Palavra Anuncie
 describe NO_INTERNETBRASIL Encontrado Palavra InternetBrasil
@@ -299,7 +298,7 @@ describe LOGWATCH Detectado email de logwatch
 header WHITE_PROVEDOR Received: =~ /email.locaweb.com.br|smtp.uhserver.com|uol.com.br/i
 score WHITE_PROVEDOR -10.0
 
-body NO_NATURA /Natura com Cupons/i
+body NO_NATURA /Natura com Cupons|Natura ligue para/i
 score NO_NATURA 6.0
 
 body NO_NUTRI /consumir *mega-3 puro/i
@@ -314,26 +313,26 @@ score BAD_ATTACHED 5.0
 body NO_MEGASENA /e-MegaSena/i
 score NO_MEGASENA 4.0
 
-header NO_SAUDEEMP Subject: =~/Planos de Saude para sua Empresa|Proposta de Planos de Sa*de|Bradesco Sa*de|Natura com Cupons|cajueiro an*o/i
+header NO_SAUDEEMP Subject =~ /Planos de Saude para sua Empresa|Proposta de Planos de Sa*de|Bradesco Sa*de|Natura com Cupons|cajueiro an*o/i
 score NO_SAUDEEMP 8.0 
 
-header NO_VIRUS Subject: =~/Demostrativo. -|processo judicial inciado em|Segue Anexo Copia do Documento/i
+header NO_VIRUS Subject =~ /processo judicial inciado em|Segue Anexo Copia do Documento/i
 score NO_VIRUS 20.0
 
-header NO_TELEFONIA Subject: =~/Economize Agora/i
+header NO_TELEFONIA Subject =~ /Economize Agora * VIVO|Economize Agora * TIM/i
 score NO_TELEFONIA 5.0
 
-header NO_RECEBER_SUBJECT Subject: =~/Pos-Graduacao a distancia/i
+header NO_RECEBER_SUBJECT Subject =~ /Pos-Graduacao a distancia/i
 score NO_RECEBER_SUBJECT 8.0
 
-body NO_RECEBER /importantes Santander|ganhar na Mega-Sena|fatura referente aos honor*rios|Baixe o Formul*rioe Nota|Auto-Atendimento BB|Ita* Personnalit*|Santander SELECT|BRASCOBRA|TR. Financeiro|3Carta3resposta3para3of|C Diretor Geral|Curso  Marido de Aluguel|Carta6resposta6|merinoinformatica|3 tentativas de entrega no seu endere*o|MEGA SESA DA VIRADA|Marcelo Silva Contabilidade|combinado ppelo telefone|kenkoking.com.br|Visualizar Curr*culo.pdf|Noticias Blog SOS Plano|Anexo: Comprovante|Boleto-Cobranca.PDF|Please find attachment|Correios Brasil  AGORA NA WEB|mercado de Bitcoins|noisiV tcefreP niaG|Seu emprestimo consignado numero|Planilha Excel Lotof*cil|Correios Brasil  AGORA NA WEB|Cobran*a NET|DQoKU2Vnd|Encaminhando os detalhes do processo judicial|JOGOS ACUMULADOS|pague agora mesmo com um SUPER DESCONTO|Ita* Personnalit*|Cliente BLACK FRIDAY|aprender a TOCAR VIOLÃO|o Curso Inglês Para Viagem|Revista|Melhor Dica|Macmillan Distribution MDL|Curso de Especial Sodepe|MM Produtos Alimenticios Eireli|jotec.com.br|pre*o de BLACK FRIDAY|LM INFORM*TICA|Programa Diabetes Controlada|como ganhar na LotoF*cil|novos seguros de sa*de do Brasil|deixar de receber|Fazan Etiquetas|E-vino Com|Assine Globo|Nilson Evangelista|MAQUINA DE VENDAS ONLINE|Gatilhos Mentais|MAURO FERNANDO MARCONDES|Banco Industrial e Comercial da China|Recovery Group S|Melhore suas vendas com os clientes|abuse.ordenato|GTA GAMES|Encaminhando os detalhes do processo|Garantimos volante premiado|repelenteparapombos|FreshestFashion|I am waiting your love without panties|foram realizadas 3 tentativas de entrega|DOLCE*GABBANA|diversas Comarcas do Estado de S*o Paulo|casadescontobrasil\com\br|voupagarmenos\com /i
+body NO_RECEBER /importantes Santander|ganhar na Mega-Sena|fatura referente aos honor*rios|Baixe o Formul*rioe Nota|Auto-Atendimento BB|Ita* Personnalit*|Santander SELECT|BRASCOBRA|TR. Financeiro|3Carta3resposta3para3of|C Diretor Geral|Curso  Marido de Aluguel|Carta6resposta6|merinoinformatica|3 tentativas de entrega no seu endere*o|MEGA SESA DA VIRADA|Marcelo Silva Contabilidade|combinado ppelo telefone|kenkoking.com.br|Visualizar Curr*culo.pdf|Noticias Blog SOS Plano|Anexo: Comprovante|Boleto-Cobranca.PDF|Please find attachment|Correios Brasil  AGORA NA WEB|mercado de Bitcoins|noisiV tcefreP niaG|Seu emprestimo consignado numero|Planilha Excel Lotof*cil|Correios Brasil  AGORA NA WEB|Cobran*a NET|DQoKU2Vnd|Encaminhando os detalhes do processo judicial|JOGOS ACUMULADOS|pague agora mesmo com um SUPER DESCONTO|Ita* Personnalit*|Cliente BLACK FRIDAY|aprender a TOCAR VIOLÃO|o Curso Inglês Para Viagem|Revista|Melhor Dica|Macmillan Distribution MDL|Curso de Especial Sodepe|MM Produtos Alimenticios Eireli|jotec.com.br|pre*o de BLACK FRIDAY|LM INFORM*TICA|Programa Diabetes Controlada|como ganhar na LotoF*cil|novos seguros de sa*de do Brasil|deixar de receber|Fazan Etiquetas|E-vino Com|Assine Globo|Nilson Evangelista|MAQUINA DE VENDAS ONLINE|Gatilhos Mentais|MAURO FERNANDO MARCONDES|Banco Industrial e Comercial da China|Recovery Group S|Melhore suas vendas com os clientes|abuse.ordenato|GTA GAMES|Encaminhando os detalhes do processo|Garantimos volante premiado|repelenteparapombos|FreshestFashion|I am waiting your love without panties|foram realizadas 3 tentativas de entrega|DOLCE*GABBANA|diversas Comarcas do Estado de S*o Paulo|casadescontobrasil\com\br|voupagarmenos\com |perito*imovel|uem.mz/i
 score NO_RECEBER 6.0
 
-body NO_CURSOS /Curso F*rmula/i
-score NO_CURSOS 0.7
+body NO_CURSOS /Curso F*rmula|inglesgarantido\.com\.br/i
+score NO_CURSOS 5.0
 
-body NO_BITLY /bit.ly|goo.gl/i
-score NO_BITLY 1.5
+body NO_BITLY /bit\.ly|goo\.gl/i
+score NO_BITLY 9.0
 
 body NO_TELEFONIA /1 ano de telefonia/i
 score NO_TELEFONIA 3.0
@@ -362,17 +361,14 @@ body NO_SOCIESC /sociesc/i
 score NO_CNI 3
 body NO_CNI /sst\@cni.org.br/i
 
-score NO_BOLETO 1.2
-body NO_BOLETO /boleto.pdf|boleto.doc|GERAR BOLETO|BOLETO de cobran|Boleto Banc|Cobranca.pdf/i
+score NO_BOLETO 4
+body NO_BOLETO /GERAR BOLETO|BOLETO de cobran|Boleto Banc|Cobranca.pdf|Fatura em Anexo* mail_/i
 
 score NO_UNIMED 1.5
 body NO_UNIMED /Economize ate/i
 
 score NO_COMPROVANTE 1.8
 body NO_COMPROVANTE /comprovante.*\.(pdf|doc)|Comprovante_Transferencia.bmp|Titulo.pdf|teu deposito ja foi feito, comprovante estabaixo em anexo|ANEXO:|Comprovante de Transfer|comprovante de dep|Comprovante N.|comprovante de estorno de deposito|Estou mandando o comprovante do dep|do comprovante do deposito|segue em anexo o comprovante|envie o comprovante do mesmo via email devidamente identificado/i
-
-score BAD_ATACH 15
-rawbody BAD_ATACH /DSC[0-9A-Za-z].*\.(jpg|jpeg|gif) \([0-9A-Za-z].*\)|Deposito[0-9A-Za-z].*\.doc|Boleto_Bancio-*.doc|Ana_foto*.jpg|Baixar comprovante|esta ai as fotos|ANEXO: http:\/\/www.fileden.com\/files\/2011\/1\/25\/3066982\/fatura_dezembro.zip|Anexo: Comprovante.doc|Anexado: Orcamento.doc|orcamento.zip|Comprovante_Deposito.jpg|Deposito*.doc|TRANSF...JPG|BOLETO.HTML|DSC_IMAG*.jpg|Clique aqui para visualizar o boleto|Proposta.doc|Comprovante Dep*sito-*|ANEXO:comprovante.pdf|FOTO: fotos-RobertaLima.JPG|IMG*JPG|NF-e-1204274459.pdf|Rela*oDeCompra.zip|DSC_1709235674.JPG|Boleto em atraso do contrato|Boleto_MS*.pdf|Adobe.Acrobat.pdf|Estabelecimento Cobran*a Online.zip|Comp_Transferencia.zip|CURRICULUM___________________.do|Comprovante.nf.zip|2VIA_BOLETO_2015.zip|2VIA.BOLETO_2015.zip|2VIA_BOLETO-2015.zip|2VIA.BOLETO.2015.zip|Segue em anexo o boleto|Fatura*.html|Comprovante.html|Documento*.pdf.html|fatura*.zip|[0-9A-Za-z]*.vbs|AnexoDocumento[0-9A-Za-z].PDF.html/i
 
 score NO_CHEQUE 4
 body NO_CHEQUE /ANEXO:cheque*|cheque protestado/i
@@ -453,7 +449,7 @@ score NO_Liberalinhacrto 4
 body NO_Liberalinhacrto /Libera* de linha de cr*to com Taxa de 2% ao ano/
 
 score NO_Notificacaodevolucaoencomenda 4
-body NO_Notificacaodevolucaoencomenda /Notificacao de devolucao de encomenda/
+body NO_Notificacaodevolucaoencomenda /Notificacao de devolucao de encomenda|hyperurl\.\co/
 
 score NO_RecadastramentodispositivoEvitebloqueio  4
 body NO_RecadastramentodispositivoEvitebloqueio /Recadastramento de dispositivo, Evite o bloqueio. Protocolo:/
@@ -2190,6 +2186,6 @@ score DUMP_ORACLE -4.0
 meta DUMP_ORACLE (( ORACLE1 + ORACLE2 ) > 1 )
 
 score LOGWATCH -8.0
-header LOGWATCH Subject =~/Logwatch for/i
+header LOGWATCH Subject =~ /Logwatch for/i
 
 

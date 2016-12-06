@@ -1,6 +1,6 @@
-## Antispam 
+# Antispam
 ###########################################################################
-#  Ultima Alteracao - 01/12/2016
+#  Ultima Alteracao - 06/12/2016
 ########################################################################### 
 
 
@@ -69,6 +69,7 @@ loadplugin Mail::SpamAssassin::Plugin::DKIM
 required_hits           5
 
 # Whitelists
+whitelist_from *@prontomed.com.br
 whitelist_from_rcvd *@medicina-digital.com medicina-digital.com
 whitelist_from_rcvd *@schutz.com.br schutz.com.br
 whitelist_from_rcvd *@hugolinoandrade.com.br hugolinoandrade.com.br
@@ -164,9 +165,16 @@ whitelist_from *@hsac.com.br
 whitelist_from *@scheva.com.br
 whitelist_from *@speedhost.com.br
 whitelist_from *@globalsign.com
+whitelist_from *@anatpat.com.br
 
  #--------------------------------------------------------------
 
+blacklist_from *@dislax.com.br
+blacklist_from *@imploc.com.br
+blacklist_from *@scaxz.com.br
+blacklist_from *@tj.toolssendera.com.br
+blacklist_from *@mainbrookes.com.br
+blacklist_from *@vivakandassociates.com
 blacklist_from *@ls.findersenderd.com.br
 blacklist_from *@mainbrookes.com.br
 blacklist_from *@helicenews.com.br
@@ -381,7 +389,7 @@ score		RCVD_IN_CBL		2.0
 header		RCVD_IN_JMF_BL		eval:check_rbl_sub('JMF-lastexternal','127.0.0.2')
 describe	RCVD_IN_JMF_BL		Sender listed in JMF-BLACK
 tflags		RCVD_IN_JMF_BL		net
-score       RCVD_IN_JMF_BL    	1.5
+score       	RCVD_IN_JMF_BL    	1.5
 
 #########################################################################################################
 
