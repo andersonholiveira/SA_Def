@@ -1,0 +1,29 @@
+# iXhash computes MD5 checksums of fragments of the body of an e-mail
+# and compares them to those of known spam using DNS queries to a RBL-
+# like name server. So it works similar to the standard plugins that
+# use the Pyzor, Razor and DCC software packages.
+
+# Note: loadplugin should really go into local.pre or so
+loadplugin Mail::SpamAssassin::Plugin::iXhash2
+
+ifplugin Mail::SpamAssassin::Plugin::iXhash2
+
+ixhashdnsbl	GENERIC_IXHASH  generic.ixhash.net.
+body		GENERIC_IXHASH  eval:check_ixhash('GENERIC_IXHASH')
+describe	GENERIC_IXHASH  http://www.ixhash.net/listinfo.html
+tflags		GENERIC_IXHASH  net
+score		GENERIC_IXHASH  1.5
+
+ixhashdnsbl	NIXSPAM_IXHASH  ix.dnsbl.manitu.net.
+body		NIXSPAM_IXHASH  eval:check_ixhash('NIXSPAM_IXHASH')
+describe	NIXSPAM_IXHASH  http://www.ixhash.net/listinfo.html
+tflags		NIXSPAM_IXHASH  net
+score		NIXSPAM_IXHASH  1.5
+
+ixhashdnsbl	SEM_IXHASH  ixhash.spameatingmonkey.net.
+body		SEM_IXHASH  eval:check_ixhash('SEM_IXHASH')
+describe	SEM_IXHASH  http://spameatingmonkey.com/lists.html
+tflags		SEM_IXHASH  net
+score		SEM_IXHASH  1.5
+
+endif
