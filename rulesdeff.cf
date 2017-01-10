@@ -1,0 +1,1592 @@
+##################################################
+### Ultima revisao - 10/01/2017
+### Tecnico - Anderson Oliveira
+##################################################
+#
+# Sempre Mantenha o Layout abaixo:
+# Describe - Descricao da regra que voce ira criar
+# Regras - Regras gerais e suas pontuacoes
+# Regras Para META - Regras utilizados para META e suas pontuacoes
+#	- Estas regras precisam conter pontuacoes baixas
+#	- Por utilizarem palavras comuns, que serao
+#	- utilizadas em contexto nas TAG's META
+# Meta - Conjunto de regras META para melhor analise de SPAM
+#
+##################################################
+
+
+#============= Describe ===================#
+# Coloque a descricao das regras abaixo
+
+# Header
+
+describe WHITE_RCVD Provedor em lista branca
+describe WHITE_RCVD_SUBJ Dominio em lista branca
+describe BAD_RCVD_FROM Remetente em blacklist
+describe BAD_RCVD_SUBJ Assunto em blacklist
+
+# Mime
+#describe BAD_ATTACHED Anexo com extensao proibida
+
+# Body
+
+describe BAD_UOL E-mail com informacoes referentes UOL
+describe BAD_HYPERLINK E-mail com hyperlink suspeito
+describe BAD_CURSO E-mail com falsos cursos
+describe BAD_CURRICULO E-mail com curriculo suspeito/virus
+describe BAD_NATURA E-mail spammer Natura 
+describe BAD_SAUDE E-mail com informacoes saude empresarial
+describe BAD_SEXO E-mail com informacoes sobre sexo
+describe BAD_DINHEIRO E-mail com informacoes refente a dinheiro
+describe BAD_CORREIO E-mail sobre entregas
+describe BAD_FOTOVIDEO E-mail contendo video/foto inapropriado
+describe BAD_BOLETO E-mail contendo boleto fraudulento
+describe BAD_GLOBAL E-mail contendo informacoes inapropriadas
+describe BAD_CPF E-mail contendo assunto CPF
+describe BAD_MEGASENA E-mail sobre mega sena
+describe BAD_FRAUDE E-mail contendo informacoes fraudulento
+
+# Uri
+
+describe URL_BLACKLISTED1 E-mail em blacklist1
+describe URL_BLACKLISTED2 E-mail em blacklist2
+describe URL_BLACKLISTED3 E-mail em blacklist3
+describe URL_BLACKLISTED4 E-mail em blacklist4
+describe URL_BLACKLISTED5 E-mail em blacklist5
+describe URL_BLACKLISTED6 E-mail em blacklist6
+describe URL_BLACKLISTED7 E-mail em blacklist7
+describe BAD_UNSUBSCRIBE_PHP E-mail com apontamento unsubscribe
+
+# Regras avancadas de SPAM -- POR NIVEL
+
+describe NO_NV1 Regra de Spam Nivel 1
+describe NO_NV2 Regra de Spam Nivel 2
+describe NO_NV3 Regra de Spam Nivel 3
+describe NO_EMPRESA Regra de Spam para Melhore sua empresa
+describe NO_INVEST Regra de Spam para Aprenda a Investir
+#describe NO_CONTABILIDADE Regra de Spam para Cursos de Contabilidade
+describe NO_GANHAR Regra de Spam para Ganhe Dinheiro
+describe NO_FESTA Regra de Spam Promocao Festa
+describe NO_NV_AG1 Regra Agravante de Nivel de Spam
+describe NO_NV_AG2 Regra Agravante de Nivel de Spam
+
+# Contorno
+describe DUMP_ORACLE Detectado email de DUMP
+describe LOGWATCH Detectado email de logwatch
+
+#================== REGRAS =====================#
+# Adicione as regras a serem avaliadas abaixo
+# Junto com sua devida pontuacao
+
+# Header
+
+header WHITE_RCVD Received: =~ /email.locaweb.com.br|smtp.uhserver.com|uol.com.br|google\.com/i
+score WHITE_RCVD -10.0
+
+score WHITE_RCVD_SUBJ -8.0
+header WHITE_RCVD_SUBJ From: =~ /cataniastudio.com|rodneymutter.com|microtelefonia.com.br|lucasbarp.com.br|henrich.com.br|embratel.net.br|empregos.com.br|feevale.br|temtransporte.com.br|cmocampobom.com.br|mailca.custhelp.com|nilagge.com.br|vilage.com.br|gallaps.com.br|mxmgrupo.com.br|mxmserigrafica.com.br|testingcompany.com.br|hugolinoandrade.com.br|webtrading.com.br|trendmicro.com|schutz.com.br|labhpardini.com.br|terra.com|technobox.com.br|gmail.com|idg.com.br|medicina-digital.com|via-rs.net|marketingtop.us|hotmail.com|terra.com.br|ventiur.net|bol.com.br|labet.com.br|gvt.com.br|contentarestaurante.com.br|novope.com.br|seprorgs.org.br|uol.com.br|sebrae-rs.com.br|sebraego.com.br|sebrae.com.br|microsoft.com|ginasticanh.com.br|ibest.com.br|vmware.com|portalbc.com.br|news.epnms.net|machadoti.com.br|ecosson.com.br|sapucaiaclinicas.com.br/i
+
+score BAD_RCVD_FROM 7.0
+header BAD_RCVD_FROM From =~ /actgerencial20\@gmail\.com|acaovirtual\.com\.br|enviosparadise\.com|ignorelist\.com/i
+
+header BAD_RCVD_SUBJ Subject =~ /processo judicial inciado em|Segue Anexo Copia do Documento|Planos de Saude para sua Empresa|Proposta de Planos de Sa*de|Bradesco Sa*de|Natura com Cupons|cajueiro an*o|Economize Agora * VIVO|Economize Agora * TIM|Pos-Graduacao a distancia|Muito Mais INTERNET|Comprovante de deposito identificado de N|NF-e E FORMUL*RIO PARA RETIRADA|Venda para os melhores da OLX|Melhor que planilhas para suas finan|E M A I L M A R K E T I N G|DESCUBRA COMO LIMPAR O CPF|O Melhor para voc*|RE: Segue copia do documento|lista de CLIENTES para vendas|Alavancando as redes sociais do seu|CORREIOS - Objeto -|Isso a GLOBO n*o mostra|ENC\: Isso a GLOBO|Dec Month Bill|Limpe seu cpf agora|lista de e-mails ABERTOS|Natura \- Natal Especial|C*pia da fatura em protesto, Controle|com o Mau H*lito|Spirito Santo 2017|Samsung_Galaxy_J_Prime|RASTREAMENTO AGUARDANDO OK|Diego Junges|Sua EMPRESA precisa de muitos minutos/i
+score BAD_RCVD_SUBJ 10.0
+
+# Mime
+#mimeheader BAD_ATTACHED Content-Type =~ /bat|cmd|com|cpl|exe|msi|vb|vbs|dzip/i
+#score BAD_ATTACHED 15.0
+
+# Body
+
+score BAD_UOL 15.0
+body BAD_UOL /UOL Wi-Fi/i
+
+score BAD_HYPERLINK 7.0
+body BAD_HYPERLINK /bit\.ly|goo\.gl|hyperurl\.co/i
+
+score BAD_CURSO 7.0
+body BAD_CURSO /sonho de aprender a tocar no conforto|Curso F*rmula|inglesgarantido\.com\.br/i
+
+score BAD_CURRICULO 7.0
+body BAD_CURRICULO /Curriculo\-Fernanda\_Melo\.pdf/i
+
+score BAD_NATURA 7.0
+body BAD_NATURA /Natura com Cupons|Natura ligue para/i
+
+score BAD_SAUDE 7.0
+body BAD_SAUDE /consumir *mega-3 puro|Planos de sa*de Empresa|Planos de Sa*de|Bradesco Sa*de|Amil sempre a melhor|emagrecer e definir o corpo|queda de cabelo|separamos os melhores planos de sa*e para|Fa*a a escolha certa do seu Plano|Atendimento M*dico e Hospitalar em todo o territ*rio nacional | Planos de Sa*de para sua Empresa|plano de sa*de|Empresarial com descontos especiais para o Interior de SP e outros estados confira o seu|Unimed Paulistana Promocional|Noticias Blog SOS Plano|Programa Diabetes Controlada|novos seguros de sa*de do Brasil|planos da SulAm*rica|com o Mau H*lito|Sirio Libanes, Albert Einstein, Samaritano|one-health\.br/i
+
+score BAD_SEXO 5.0
+body BAD_SEXO /Dando uma trepada de leve|vara comendo|vida sexual|prazeres ocultos|Aumente seu desejo|desempenho sexual|Estimulante Natural|estimulante e energizante|Maca Peruana|tamanho n*o era documento|Auxilia na ejacula*o precoce|Estimulante recomendado para homens|Estimulante Natural|poder da recupera*o Sexual|powerpotence\.info|estimulante-maca/i
+
+score BAD_DINHEIRO 7.0
+body BAD_DINHEIRO /Comece Hoje a Economizar|GERAR BOLETO|BOLETO de cobran|Boleto Banc|Cobranca\.pdf|Fatura em Anexo: mail_|comprovante.*\.(pdf|doc)|Comprovante_Transferencia.bmp|Titulo.pdf|teu deposito ja foi feito, comprovante estabaixo em anexo|ANEXO:|Comprovante de Transfer|comprovante de dep|Comprovante N.|comprovante de estorno de deposito|Estou mandando o comprovante do dep|do comprovante do deposito|segue em anexo o comprovante|envie o comprovante do mesmo via email devidamente identificado|ANEXO:cheque*|cheque protestado|Libera* de linha de cr*to com Taxa de|Regularize seu d*bito|may get money|Clique aqui para emitir nova fatura|U*10,200,000.00 Million Dollars|Euro Million Mega Lottery Game|Do_You_Know_Your_New_Score|gosta de apostar na Lotofacil|Banco BPI Gratificao de Natal|Your_TransUnion, Equifax, and Experian credit scores for|Te invitamos a conocer las *ltimas novedades en Lencer*a Er*tica|y todo lo que hay en un sex shop/i
+
+score BAD_CORREIO 7.0
+body BAD_CORREIO /Sua encomenda esta disponivel para retirada na agencia central dos correios Rastreamento|Notificacao de devolucao de encomenda|Sedex10 a retirar nos CORREIOS|Seu pedido foi entregue a transportadora|Clique aqui para abrir seu Telegrama|acabou de receber um Telegrama Online dos Correios|Correios Brasil  AGORA NA WEB|3 tentativas de entrega no seu endere*o|smarturl\.it/i
+
+score BAD_FOTOVIDEO 5.0
+body BAD_FOTOVIDEO /Tim Foto DSC*|Havia esquecido de mandar aquela linda foto|dilma russeff sofrendo ataque cardiaco|Video Dilma Rousseff - Irritada na Globo|Conforme combinamos estou enviando as fotos do motel, espero que n esque de apagar em seguida|como vocteve coragem de fazer isso comigo|brother consegui as fotos da mariana bebada e completamente nua lno churrasco/i
+
+score BAD_BOLETO 5.0
+body BAD_BOLETO /N*o indentificamos o Pagamento do Boleto|Caso n*o efetuar o pagamento na data de vencimento do boleto|segue anexo boleto da empresa|segue boleto bancario para pagamento referente ao contrato|segue a * via da fatura em atraso com vencimento|boleto de pagamento conforme solicitado|Segue em anexo o boleto solicitado com descontos nos juros|Anexado Faruta Requerida|Segue o boleto em anexo|Martins Logan Scott|Clique no arquivo em anexo para visualizar Boleto|Aguardamos o pagamento do boleto|para maior seguran*a confira se as informa*es do boleto est* corretas|Para visualizar o documento disponive na imagem abaixo|Edgard Leite|fatura em protesto para conhecimento, que sera inclu*do na base do SERASA/i
+
+score BAD_GLOBAL 5.0
+body BAD_GLOBAL /sociesc|criamos seu site|newsletter\@ricardoorlandini.net.br|deseje mais receber|OPORTUNIDADE IMPERDIVEL|Compartilhe essa mensagem em suas redes sociais|Produzimos roteiros para Filmes|Caderno Inteligente|1 ano de telefonia|Curso  Marido de Aluguel|merinoinformatica|Tupperware em sua casa|aprender a TOCAR VIOL*O|o Curso Ingl*s Para Viagem|Revista|Melhor Dica|Fazan Etiquetas|E-vino Com|Assine Globo|Nilson Evangelista|MAQUINA DE VENDAS ONLINE|Gatilhos Mentais|www\.express\.co\.uk|paraempresa\.com\.br|mktsegmentado\.com|DEN*NCIA e ABUSE|because it registered in our database|constar em uma lista de nossos parceiros|Adelina claudio|Wu Hongbo|faciotreinamentos\.com|Compra Premiada Cielo|pacote de viagem CVC|levar contrato social e documentos pessoais/i
+
+score BAD_CPF 5.0
+body BAD_CPF /regularizamos seu cpf em no maximo 24 horas|Removemos qualquer restrio que tenha em seu cpf|removemos SPC|para resolver a pend*cia em seu nome|Se Seu nome se encontra com problemas|regulariza*o de d*bitos junto aos *rg*os de prote*o ao credito|Indicador SERASA Experian|Limpe seu nome e aumente seu score por/i
+
+score BAD_MEGASENA 5.0
+body BAD_MEGASENA /e*MegaSena|ganhar na Mega-Sena|MEGA SESA DA VIRADA|Planilha Excel Lotof*cil|JOGOS ACUMULADOS|como ganhar na LotoF*cil/i
+
+score BAD_FRAUDE 6.0
+body BAD_FRAUDE /importantes Santander|fatura referente aos honor*rios|Baixe o Formul*rioe Nota|Auto-Atendimento BB|Ita* Personnalit*|Santander SELECT|BRASCOBRA|TR. Financeiro|3Carta3resposta3para3of|C Diretor Geral|Carta6resposta6|Marcelo Silva Contabilidade|combinado ppelo telefone|kenkoking.com.br|Visualizar Curr*culo.pdf|Anexo: Comprovante|Boleto-Cobranca.PDF|Please find attachment|mercado de Bitcoins|noisiV tcefreP niaG|Seu emprestimo consignado numero|Cobran*a NET|DQoKU2Vnd|Encaminhando os detalhes do processo judicial|pague agora mesmo com um SUPER DESCONTO|Ita* Personnalit*|Cliente BLACK FRIDAY|Macmillan Distribution MDL|Curso de Especial Sodepe|MM Produtos Alimenticios Eireli|jotec.com.br|pre*o de BLACK FRIDAY|LM INFORM*TICA|MAURO FERNANDO MARCONDES|Banco Industrial e Comercial da China|Recovery Group S|Melhore suas vendas com os clientes|abuse.ordenato|GTA GAMES|Encaminhando os detalhes do processo|Garantimos volante premiado|repelenteparapombos|FreshestFashion|I am waiting your love without panties|foram realizadas 3 tentativas de entrega|DOLCE*GABBANA|diversas Comarcas do Estado de S*o Paulo|casadescontobrasil\com\br|voupagarmenos\com |perito*imovel|uem.mz|Loteamento fechado no interior|Ronaldo - Dep. Financeiro|Prezado Cliente personnalit*|O banco Ita* realiza diariamente|levar contrato social e documentos pessoais|Auditoria - IRPF*IRPJ/i
+
+# Uri
+
+score  URL_BLACKLISTED1 42.0
+uri URL_BLACKLISTED1 /www.cartaexpressa.com\/adserver\/|biz-sell.ru|importados.trade|oryrevendedor.comunicacaodemkt.com\/admin\/|www.server74.com.br\/abc.htm|support.careers4youtoday.com\/|help.topnotchcustomersupport.com\//i
+
+score  URL_BLACKLISTED2 2.0
+uri URL_BLACKLISTED2 /www.mail2pro.com.br\/|adm.emailtob.com\/count\/|debitos2010.webcindario.com\/debitos2010.zip\/|.networksolutions.com\/cgi-bin\/promo\/|http:\/\/www.hookmail.com.br\/unsubscribe.php\//i
+
+score URL_BLACKLISTED3 2.2
+uri URL_BLACKLISTED3 /http:\/\/www.bonusextra.com.br\/bonusextra\/participar.html|http:\/\/e.allin.com.br| http:\/\/interest-money-goods.com.ua\/|http:\/\/i.imgur.com\/kxd4R.jpg|www.activeup.com|http:\/\/images.orkut.com\/orkut\/photos/i
+
+score URL_BLACKLISTED4 2.2
+uri URL_BLACKLISTED4 /http:\/\/www.efacil.com.br\/search\/eletrodomesticos.aspx|http:\/\/imgemail.netshoes.com.br\/headers\/parceiros\/novo\/bmc.jpg|http:\/\/campanha.paulogasparotto.com\/|http:\/\/imgemail.netshoes.com.br\/|http:\/\/www.maffer.com.br\/|http:\/\/app.maildesconto.com.br/i
+
+score URL_BLACKLISTED5 2.3
+uri URL_BLACKLISTED5 /http:\/\/bottleshots.dicreates.com|http:\/\/d-view.econtinental.com.br|http:\/\/www.nitgen.com.br\/Mala_Direta\/Portifolio_2.jpg|http:\/\/www.bankowosc.ue.wroc.pl\/slub\/_vti_cnf\/reativamento.php|http:\/\/www.mclassnews.com.br|www.mclass.com.br|http:\/\/s07.parceiro08.materiaglobo.net\/zender\/oimg.php|http:\/\/www.ptsul.com.br\/m\/19\/9998_mandato-na-rede-26-06.jpg/i
+
+score URL_BLACKLISTED6 2.2
+uri URL_BLACKLISTED6  /http:\/\/d-app.comunicaabrhrs.org.br\/|www.imailing.com.br|www.beneficium.com.br/i
+
+score URL_BLACKLISTED7 1.8
+uri URL_BLACKLISTED7  /http:\/\/d-view.fazan.ind.br|http:\/\/www.touroperator.com.br|http:\/\/www.megaamigao.com.br|http:\/\/www.sv-berg.at\/plugins\/index.php|http:\/\/www.svendborgkunstraad.dk\/components\/com_banners\/index.php|http:\/\/mailing.trabajandomail.com\/|www.klatreinamentos.com.br|http:\/\/www.sded.com.br|www.kopeconsulting.com/i
+
+score BAD_UNSUBSCRIBE_PHP 2.5
+uri BAD_UNSUBSCRIBE_PHP /\/unsubscribe.php/
+
+#================= Regras para META =================#
+# Este conjunto de regras foi separado por conter
+# palavras comuns, que serao utilizadas nas tags
+# META. Em conjunto elas podem filtrar padroes
+# encontradas em SPAMs
+# Manter as regras utilizadas para META separadas
+# das demais regras para facilitar a manutencao 
+# das Regras
+
+# Casos especificos
+
+score CREDIT1 0.3
+score CREDIT2 0.3
+score CREDIT3 0.3
+body CREDIT1 /REDECARD|DINERS|Mastercard Surpreenda/i
+body CREDIT2 /MasterCard/i
+body CREDIT3 /VISA|Cielo|Para participar da/i
+
+score ITOKEN1 0.3
+score ITOKEN2 0.3
+score ITOKEN3 0.3
+score ITOKEN4 0.3
+body ITOKEN1 /atualiz*|suas chaves de|recadastr*|resolvido em 24 horas sua conta ser bloqueada permanentemente|Para habilitar seu dispositivo Token|Informamos que seu iToken encontra-se dessincronizado/i
+body ITOKEN2 /itoken|desatualizado|Internet Banking|banco de dados|encaminhando o relat*rio|bankline|autoatendimento e realiza frequentemente|Verificamos que existe uma falha no Certificado SSL de sua conta|todos os correntistas Banco do Brasil|sua conta sera bloqueada/i
+body ITOKEN3 /dispositiv*|tornaram-se inoperantes|corrigir dados divergentes|resolver o problema|nosso banco de dados|para obter a corre*|Verifique se sua conta|Cartilha de Seguran*a|de componentes adicionais de acesso e se faz|seja efetivada siga todos os procedimentos|imediatamente bloqueada|acesse o atalho abaixo/i
+body ITOKEN4 /cliente|atualizados seu acesso|Central de Suporte|HSBC Telefone|enviada por Ita*Comunic* digital|contrato de Termos|seus dados em nossa central/i
+
+score TRIBUNAL1 0.3
+score TRIBUNAL2 0.3
+score TRIBUNAL3 0.3
+body TRIBUNAL1 /tribunal/i
+body TRIBUNAL2 /superior/i
+body TRIBUNAL3 /eleitoral/i
+
+score SERRA1 0.3
+score SERRA2 0.3
+score SERRA3 0.3
+body SERRA1 /sexo/i
+body SERRA2 /serra/i
+body SERRA3 /gabinete/i
+
+score TREIN1 0.3
+score TREIN2 0.3
+body TREIN1 /treinamento|certificado de particip*|aula da Abat/i
+body TREIN2 /objetivo|Por que fazer esse treinamento|vendas altamente produtiva|passar 01 dia inteiro com|N*o teremos mais vagas dispon*veis|em nosso treinamento|Data e hor*rio do treinamento/i
+
+score VIAJAR 0.1
+score VIAJAR2 0.1
+score VIAJAR3 0.1
+body VIAJAR /viaj*|viage*|TAM Viagens|MEGAPROMO|TAM Fidelidade|TAM Linhas Aereas|comprar os passagens aereas destas companhias/i
+body VIAJAR2 /passagens|cruzeiro*|viagem especial|pontos que podem ser utilizados|link abaixo para confirmar|Seu email foi escolhido para participar|MILHAS TAM FIDELIDADE|maior feriado do ano|www.voenix.com.br/i
+body VIAJAR3 /desconto*|MasterCard|basta acessar o endere*|realize o cadastro em nosso site|A partir de 10.000 pontos|RESGATE DE PONTOS|ser um dos sorteados|400 mil pontos todos os dias|Estou aguardando sua resposta com o vosso|Pre*os promocionais|temporada|.nixtravel.com.br/i
+
+score LAVAGEM 0.3
+score LAVAGEM2 0.3
+score LAVAGEM3 0.3
+body LAVAGEM /polimento/i
+body LAVAGEM2 /interiores/i
+body LAVAGEM3 /pintura/i
+
+score BRADESCO 0.3
+score BRADESCO2 0.3
+score BRADESCO3 0.3
+body BRADESCO /efetuar a atualiza|atualiz*|Rede de Atendimento|seguranca estamos bloqueando sua conta|Acessar e Regularizar/i
+body BRADESCO2 /Internet Banking Bradesco|Bradesco Banking|o  Bradesco com o objetivo|e-bank*|Banco Bradesco Internet|preencher corretamente para que sua conta seja desbloqueada|o prazo de cinco dias|Seu java precisa ser atualizado|Informamos que o per*odo de uso das suas chaves de seguran|Chave de Segura*a Bradesco/i
+body BRADESCO3 /Prezado Cliente|Cliente Bradesco|Efetue o desbloqueio clicando|bloqueada e suas chaves de seguran* canceladas|seu acesso ao nosso portal de atendimento online ser* bloqueado|sera necessario realizar a atualizacao de seus dados|Caso autenticidade desse dispositivo/i
+
+score BANCOREAL1 0.3
+score BANCOREAL2 0.3
+score BANCOREAL3 0.3
+body BANCOREAL1 /Cliente Banco Real. Seu banco Mudou/i
+body BANCOREAL2 /seu cadastro acessando/i
+body BANCOREAL3 /clientes que realize este novo cadastro/i
+
+score SANTANDER1 0.3
+score SANTANDER2 0.3
+score SANTANDER3 0.3
+body SANTANDER1 /Banco Santander|Santander Real|Grupo Santander|Grupo Real Santander|Prezado(a) Cliente|Aten* E-mail Protegido|Download do Instalador Execut*ve|Cliente Empresarial|por medidas de segura*|Clique no link correspondente abaixo|Santander trabalha continuadamente/i
+body SANTANDER2 /Proteger sua conta e|seus Dados Cadastrais| m*dulo de prote*o|Para que seu acesso|Ativa* Cadastral Pendente|encontra-se desatualizado|Confirme agora mesmo|realize imediatamente sua reativa*|Token foi expirado|encontra-se expirado|seus acessos a sua conta|Para iniciar o procedimento|Para iniciar a Reativa*o clique aqui/i
+body SANTANDER3 /Internet Banking|ATIVAR M*DULO DE PROTE*O|InternetBanking|mostrar conte*o|Para visualizar este comunicado|servidores certificados|Prezando evitar o extravio|Internet Banking|seguintes procedimentos em tela|Caso o caminho acima/i
+
+score PT1 0.3
+score PT2 0.3
+score PT3 0.3
+body PT1 /movimentojovemmg/i
+body PT2 /vote/i
+body PT3 /serra/i
+
+score NFE_DVSISTEMAS1 0.2
+score NFE_DVSISTEMAS2 0.2
+score NFE_DVSISTEMAS3 0.2
+score NFE_DVSISTEMAS4 0.2
+body NFE_DVSISTEMAS1 /DV Sistemas|NOTA FISCAL em PDF|boleto e Nota fiscal|Gerar Boleto Online/i
+body NFE_DVSISTEMAS2 /Este arquivo deve ser armazenado|Jussara Felisberto|boleto via correio|direcionado ao tema/i
+body NFE_DVSISTEMAS3 /DVNFe|Segue Anexo a Nota Fiscal|Analista - Faturamento|Boleto referente *s notas|Artigos.../i
+body NFE_DVSISTEMAS4 /Seja independente|valor foi debitado com sucessoA|Secret*ria Comercial|pedidos e demais detalhes do pagamento/i
+
+
+score VENDAS1 0.1
+score VENDAS2 0.1
+score VENDAS3 0.1
+score VENDAS4 0.1
+body VENDAS1 /partir|apenas|melhores|garantia|novo pr* lan*amento|um projeto maravilhoso|atingir os objetivos almejados|lazer na cobertura com|fornecimento de leads comerciais|sou profissional de vendas da Mumbai|conhecem as mais novas Lojas TIM|Todas as ofertas do|Quer aumentar suas vendas/i
+body VENDAS2 /cliente|frete|procura|pagto|CONTATO AGORA MESMO|TREINAMENTOS ABERTOS|forno de pizza e vista|entrando em contato para fazer uma proposta|ma passadinha numas dessas|Cupons limitados aproveite|Televendas/i
+body VENDAS3 /brinde*|produto*|equipamento*|estoque*|computador|EXCELENTE COND*|supervisores e coordenadores de vendas|pertinho da Av. Treze de Maio|conhecimento quanto sobre ofertas de produtos|Administre suas publica*|est* esperando o qu*|Solicite um KIT de amostra|engajamento e nunca mais ficar sem/i
+body VENDAS4 /compromisso|boletos|marcas|ENTREGA|DOIS APARTAMENTOS POR ANDAR|TURMA CONFIRMADA|Rua Piracicaba esquina c\/ Rua Batatais|leads monitorados e disponibiliza|para pequenas empresas e profissionais liberais|Estamos esperando sua visita|Por que adquirir o Nota Certa|pagamento * antecipado|SEJA NOSSO DISTRIBUIDOR EM SUA CIDADE|ligue e compre|vender-mais/i
+
+score PREMIO_SOFT1 0.3
+score PREMIO_SOFT2 0.3
+score PREMIO_SOFT3 0.3
+score PREMIO_SOFT4 0.3
+body PREMIO_SOFT1 /Software/i
+body PREMIO_SOFT2 /wins/i
+body PREMIO_SOFT3 /Silver/i
+body PREMIO_SOFT4 /celebrate/i
+
+score EXPOMEDICAL1 0.3
+score EXPOMEDICAL2 0.3
+body EXPOMEDICAL1 /ExpoMedical/i
+body EXPOMEDICAL2 /Launching of New Products/i
+
+score VENDA2_1 0.3
+score VENDA2_2 0.3
+score VENDA2_3 0.3
+score VENDA2_4 0.3
+body VENDA2_1 /chip/i
+body VENDA2_2 /samsung/i
+body VENDA2_3 /hp/i
+body VENDA2_4 /PRODUTOS NOVOS/i
+
+score NUMEROFACIL1 0.3
+score NUMEROFACIL2 0.3
+score NUMEROFACIL3 0.3
+body NUMEROFACIL1 /Vendo Chip com|Jogadores de futebol/i
+body NUMEROFACIL2 /N*meros com final|Vendo Chip com/i
+body NUMEROFACIL3 /Adquira j* o seu n*mero f*cil|Golden Number para pessoas de bom gosto/i
+
+score OFERTA_CLUBE_DESCONTO1 0.3
+score OFERTA_CLUBE_DESCONTO2 0.3
+body OFERTA_CLUBE_DESCONTO1 /Oferta exclusiva para/i
+body OFERTA_CLUBE_DESCONTO2 /Clube do Desconto/i
+
+score TERAP1 0.3
+score TERAP2 0.3
+score TERAP3 0.3
+body TERAP1 /terapia regressiva simples/i
+body TERAP2 /NOVA TURMA/i
+body TERAP3 /Trauma do Abuso/i
+
+score Acidente1 0.3
+score Acidente2 0.3
+score Acidente3 0.3
+body Acidente1 /Em caso de acidente/i
+body Acidente2 /recebimento do seguro/i
+body Acidente3 /procure um advogado/i
+
+score Sec_Fazenda1 0.3
+score Sec_Fazenda2 0.3
+score Sec_Fazenda3 0.3
+body Sec_Fazenda1 /A Secretaria da Fazenda do Estado/i
+body Sec_Fazenda2 /PROCON/i
+body Sec_Fazenda3 /sistema da Nota Fiscal/i
+
+score MATRICULA1 0.2
+score MATRICULA2 0.2
+score MATRICULA3 0.2
+body MATRICULA1 /TURMA DO ANO EM|uso de BSC|Planejamento|UOL Cursos Online|Agora o mercado busca por profissionais|cursos/i
+body MATRICULA2 /FEZ A SUA MATRICULA|Workshops|Controle da|aprender a desenvolver tarefas|CURSOS PROFISSIONAIS T*CNICOS|financeiros para os caixas das empresas|ficha de inscri|VEJA OUTROS EVENTOS/i
+body MATRICULA3 /treinamento|alunos|Outras datas e locais|Veja outros cursos que|regulamento e os cursos oferecidos|VEJA TODOS OS EVENTOS/i
+
+score MULT1 0.3
+score MULT2 0.3
+score MULT3 0.3
+body MULT1 /Extrato de Multas Online|pois o mesmo consta registrado no GRAVAME em seu cadastro/i
+body MULT2 /Sistema Integrado de Estradas/i
+body MULT3 /estamos enviando as notifi*/i
+
+score BALADA1 0.3
+score BALADA2 0.3
+score BALADA3 0.3
+score BALADA4 0.3
+body BALADA1 /FIM DE SEMANA/i
+body BALADA2 /DJ/i
+body BALADA3 /VIP/i
+body BALADA4 /OPEN BAR /i
+
+score RECADASTROBB1 0.3
+score RECADASTROBB2 0.3
+score RECADASTROBB3 0.3
+body RECADASTROBB1 /Autoatendimento BB|Verificamos que seu Computador|central de atendimento BB|Com intuito de preservar sua seguran|acesso suspenso sendo liberado|Prezado Cliente|O Banco do Brasil sempre pensando na seguran|O Banco do Brasil simplificou o acesso/i
+body RECADASTROBB2 /Recadastramento|Cadastramento|nossa equipe realiza frequentemente|Para realiza-la siga as|alguns modulos adicionais de acesso e se fazi|pelo seu Gerente/i
+body RECADASTROBB3 /Internet Bank*|seguran*a|possua senha da central|ATUALIZAR para iniciar|evite constrangimentos e efetuei|Para acessar o autoatendimento/i
+
+score TREIN_FISCAL1 0.3
+score TREIN_FISCAL2 0.3
+score TREIN_FISCAL3 0.3
+score TREIN_FISCAL4 0.3
+body TREIN_FISCAL1 /Escrita Fiscal|Analista de com*rcio exterior|Escritura* Fiscal/i
+body TREIN_FISCAL2 /Carga hor*|voltado a todos os operadores do direito|Obriga*es Fiscais/i
+body TREIN_FISCAL3 /Consulte formas de pagamento|Processo Administrativo at* o Judicial|despachante aduaneiro|Previdenci*rias e Trabalhistas/i
+body TREIN_FISCAL4 /Conte*do Program*tico|Atualize-se com quem sabe ensinar|processo administrativo e aduaneiro/i
+
+score TV_NO_PC1 0.3
+score TV_NO_PC2 0.3
+score TV_NO_PC3 0.3
+body TV_NO_PC1 /Assista Mais de 3000 Canais de TV na tela do seu computador!|contato com TVnoPC|TV Digital em Seu PC|O Futuro Acabou de Chegar/i
+body TV_NO_PC2 /Sem pagar mensalidade|Esperamos que se divirta bastante e usufrua de todas as possibilidades|assistir TV a cabo|Assista Canais de TV|TVnoPC Digital|SEM PAGAMENTOS MENSAIS OU ASSINATURA/i
+body TV_NO_PC3 /Taxa unica de|Equipe TVnoPC - Software Suite|Caso deseje se cadastrar|totalmente gratuito|sem taxas de assinatura ou mensalidades|Somente a taxa de aquisi*o|gratuitamente/i
+
+score TREIN_COACH1 0.3
+score TREIN_COACH2 0.3
+score TREIN_COACH3 0.3
+body TREIN_COACH1 /TREINAMENTO L*DER COACH/i
+body TREIN_COACH2 /agregando habilidades/i
+body TREIN_COACH3 /Para isso, estar preparado * fundamental!/i
+
+score TREIN_GERAL1 0.3
+score TREIN_GERAL2 0.3
+score TREIN_GERAL3 0.3
+body TREIN_GERAL1 /Neste treinamento de|TREINAMENTOS ABERTOS|TREINAMENTOS IN COMPANY|executivo requer conhecimentos|Como controlar custos|Demonstrar como realizar|apostila|T*cnicas de Reda*o de|Curso: Excel Avando|Corbett Software|BPM - Mapeamento de Processos|m*quina de fazer dinheiro|fazer muito dinheiro|de treinamento intensivo|Mais de 400 Planilhas/i
+body TREIN_GERAL2 /Participe deste treinamento|Venda no contexto|Dominar esses conceitos|Como estruturar planilhas| principais atividades da administra*|material de apoio|Carga horaria|Strategic Education University|Completo em 50 m*dulos|MCTS Windows Server 2008|Sistema que vende um Curso|Milhares de pessoas mundo|utilizadas para realizar o planejamento|apresentados casos concretos|aprender todos os segredos|As planilhas foram elaboradas por profissionais/i
+body TREIN_GERAL3 /Profissionais que atuam em Planejamento|Abordaremos as diferentes metodologias|conceitos apresentados|conceitos fundamentais|dados financeiros deve conter|coofee break|fazer a inscri*|Investimento|Formas de Pagamento|Para saber mais sobre nosso Curso|Android - Desenvolvimento...|ahn isso deve ser outra furada|Veja o que acha depois|focado para profissionais de empresas|Dezenas de planilhas com banco de dados/i
+
+score DEXCOM1 0.3
+score DEXCOM2 0.3
+score DEXCOM3 0.3
+body DEXCOM1 /Estamos criando um mundo de novidades|Continue conectado|DEXPC/i
+body DEXCOM2 /A Dexcom|desenvolvimento|Estamos construindo uma marca/i
+body DEXCOM3 /trabalha intensamente|somos uma empresa certificada/i
+
+score MUMBAI1 0.3
+score MUMBAI2 0.3
+score MUMBAI3 0.3
+body MUMBAI1 /Mumbai Express|Mumbai Personalit/i
+body MUMBAI2 /Vocescolhe o layout de seu Site Novo|Seu site personalizado/i
+body MUMBAI3 /Mumbai - Produtora Web/i
+
+score NETPROMOCAO1 0.3
+score NETPROMOCAO2 0.3
+score NETPROMOCAO3 0.3
+body NETPROMOCAO1 /velocidade E ALTO DESEMPENHO/i
+body NETPROMOCAO2 /O MELHOR DA INTERNET!/i
+body NETPROMOCAO3 /netcombopromocao/i
+
+score MODULO_SEGURANCA1 0.3
+score MODULO_SEGURANCA2 0.3
+score MODULO_SEGURANCA3 0.3
+body MODULO_SEGURANCA1 /um3sistema de prote*|ferramenta de seguran*|assinatura eletr*nica/i
+body MODULO_SEGURANCA2 /como uma blindagem de seu computador|Execute o instalador|Internet Banking/i
+body MODULO_SEGURANCA3 /Baixe o instalador do|administradores do computador|Auto-Atendimento/i
+
+score PORTALBUSCAS1 0.3
+score PORTALBUSCAS2 0.3
+score PORTALBUSCAS3 0.3
+body PORTALBUSCAS1 /Portal de BUSCAS totalmente REGIONALIZADO/i
+body PORTALBUSCAS2 /ESTADO BRASILEIRO/i
+body PORTALBUSCAS3 /divulgue o seu SITE neste PORTAL/i
+
+score CARTA_EXPRESSA1 0.3
+score CARTA_EXPRESSA2 0.3
+score CARTA_EXPRESSA3 0.3
+body CARTA_EXPRESSA1 /cadastrado em um dos Portais do Grupo/i
+body CARTA_EXPRESSA1 /agora pode aproveitar os|Ofertas v*lidas/i
+body CARTA_EXPRESSA3 /Televendas e Atendimento/i
+
+score EMAGRECER1 0.3
+score EMAGRECER2 0.3
+score EMAGRECER3 0.3
+score EMAGRECER4 0.3
+body EMAGRECER1 /engordei muito|para entrar no jeans|Gorda Nott|gordinho entre meus amigos|Barriga sequinha|fiquei muito mais bonita|Vera mostra barriga sequinha/i
+body EMAGRECER2 /tento emagrecer|obtendo os resultados|Kit Super Diet|Magra linda.. pra sempre|resolvi buscar algo natural|seca-gordura para chapar o abdomem|mostrava uma formula caseira|revela o segredo de sua boa forma/i
+body EMAGRECER3 /adorei o resultado|Perdi * Kg|Foram *kg que eliminei|consegui eliminar os|Acesse esse site ai e encontre a resposta|produto que elinimava * kg|importante aliado em regimes|estou mais magra do que quando engravidei/i
+body EMAGRECER4 /entre neste site|Super DIET|resolvi experimentar|pra quem quer mesmo emagrecer|semana perdi * quilo|queimando as gorduras|receita simples mais que esta fazendo milagre/i
+
+score EMAGRECER1_1 0.3
+score EMAGRECER1_2 0.3
+score EMAGRECER1_3 0.3
+body EMAGRECER1_1 /dias seguindo uma dica|Emagrece|consegui perder|imagem que eu via no espelho|queima calorias e ainda reduz|esta com uns quilinhos a mais|sentindo um gal* de novela|preocupo mais com as roupas|sucesso de vendas chamado NewFast|perder cintura/i
+body EMAGRECER1_2 /problemas com peso|recebi a embalagem|Eu tinha quase|assistindo a uma reportagem|dediquei um pouco mais|vivem em uma luta constante|causadores de estrias e celulites|Eu usei e perdi 9 quilos|ficar bem em mim|este programa de emagrecimento|era caso de vida ou morte|queimar gorduras localizadas|A lei seca da barriga|secar barriga|anticelulite e rejuvenescedor|ganhar massa muscular|comprimidos para emagrecer/i
+body EMAGRECER1_3 /sem mudar em nada meus|quilos a menos|que aquela menina do BBB|Meu estilo de vida mudou|que tal emagrecer dormindo|Kit Emagrecer Dormindo|aceleram o metabolismo|amigos que querem perder peso|cansaram de serem motivo*|chacota entre os amigos|Informativo Sa*de|as gordurinhas indesejadas|morrerem por excesso de peso|emagrecer e tonificar seu corpo|luta contra o peso|Goji Berry|revela 3 dicas simples|Grupo Emagrecer/i
+
+score LECITINA 0.3
+score LECITINA2 0.3
+score LECITINA3 0.3
+body LECITINA1 /Ran-yu - Licitina de ovo/i
+body LECITINA2 /Chegou Ran-yu/i
+body LECITINA3 /Ansiedade e fadiga|Envelhecimento precoce|Problemas cardiacos|Hipertens descontrolada|Disturbio da menopausa e menstruao|Impotcia sexual|Osteoporose/i
+
+score INNOVA 0.3
+score INNOVA2 0.3
+score INNOVA3 0.3
+body INNOVA /artefatos de borracha/i
+body INNOVA2 /desenvolvimento/i
+body INNOVA3 /sem compromisso/i
+
+score ADITIVO_AUTOMOTIVO 0.3
+score ADITIVO_AUTOMOTIVO2 0.3
+score ADITIVO_AUTOMOTIVO3 0.3
+body ADITIVO_AUTOMOTIVO /conhecer|adquirir|Reduz folgas/i
+body ADITIVO_AUTOMOTIVO2 /aditivo automotivo|Reduz consumo/i
+body ADITIVO_AUTOMOTIVO3 /Carbono Puro|vantagens/i
+
+score VENDAS_TIM 0.1
+score VENDAS_TIM2 0.1
+score VENDAS_TIM3 0.1
+body VENDAS_TIM /Executivo de Vendas|Coorporativas da TIM|Prezado administrador.../i
+body VENDAS_TIM2 /planos e produtos|plano para a sua empresa.../i
+body VENDAS_TIM3 /anexando as melhores|nossa empresa e de nossos planos|FGAM Represent* TIM/i
+
+score BATERIAS1 0.3
+score BATERIAS2 0.3
+score BATERIAS3 0.3
+body BATERIAS1 /BATERIAS SELADAS/i
+body BATERIAS2 /pronta entrega para todo/i
+body BATERIAS3 /Garantia 12 meses|Abaixo modelos/i
+
+score CEL_4CHIPS1 0.3
+score CEL_4CHIPS2 0.3
+score CEL_4CHIPS3 0.3
+score CEL_4CHIPS4 0.3
+score CEL_4CHIPS5 0.3
+score CEL_4CHIPS6 0.3
+body CEL_4CHIPS1 /Oi/i
+body CEL_4CHIPS2 /TIM/i
+body CEL_4CHIPS3 /VIVO/i
+body CEL_4CHIPS4 /CLARO/i
+body CEL_4CHIPS5 /4 chips/i
+body CEL_4CHIPS6 /com o Celular|compra seu celular/i
+
+score PONTO_ELET1 0.3
+score PONTO_ELET2 0.3
+score PONTO_ELET3 0.3
+body PONTO_ELET1 /ponto eletr*nico|de ponto atuais|setembro de 2011/i
+body PONTO_ELET2 /obrigad*|Portaria n* 373/i
+body PONTO_ELET3 /sistemas alternativos/i
+
+score ROLEX1 0.3
+score ROLEX2 0.3
+score ROLEX3 0.3
+body ROLEX1 /Rolex|Tissot|relogiodeouro/
+body ROLEX2 /de comprar/
+body ROLEX3 /R*plicas/
+
+
+score EMPREENDIMENTO1 0.3
+score EMPREENDIMENTO2 0.3
+score EMPREENDIMENTO3 0.3
+score EMPREENDIMENTO4 0.3
+body EMPREENDIMENTO1 /projetos muito bacanas|pr*-lan*amento no bairro|capital para investir|excelentes apartamentos|somos Correspondentes da Caixa Economica Federal|Com parcelas mensais sem juros|correspondente Caixa|O empreendimento/i
+body EMPREENDIMENTO2 /empreendimento residencial|projeto maravilhoso|parceiro para abrir algo|bairro residencial|Pode ser usado Minha Casa Minha Vida|casa no campo|maiores terrenos|em perspectiva/i
+body EMPREENDIMENTO3 /quase todos bairros|juntamente com a incorporadora|interessado em trabalhar|tima localiza*o|Bairro com toda infraestrutura para morar|construir ou reformar|infraestrutura no entorno|corretor*|metros quadrados/i
+body EMPREENDIMENTO4 /investimento|menor valor de m|tendo uma guerra muito grande|lindo empreendimento|lugar tranquilo e muito seguroi|saldo do FGTS|Lugar lindo para se morar|Visite o site do empreendimento/i
+
+score HOSPEDAGEM1 0.1
+score HOSPEDAGEM2 0.1
+score HOSPEDAGEM3 0.1
+score HOSPEDAGEM4 0.1
+score HOSPEDAGEM5 0.1
+body  HOSPEDAGEM1 /hospedar/i
+body  HOSPEDAGEM2 /Contas ilimitadas de email/i
+body  HOSPEDAGEM3 /Pagamento seguro/i
+body  HOSPEDAGEM4 /site*/i
+body  HOSPEDAGEM5 /SiteNow/i
+
+score CONVERTER1 0.3
+score CONVERTER2 0.3
+score CONVERTER3 0.3
+score CONVERTER4 0.3
+body CONVERTER1 /Filmagem/i
+body CONVERTER2 /DVD /i
+body CONVERTER3 /VHS|Recuperao de fotos antigas/i
+body CONVERTER4 /LPS|CD/i
+
+score LISTAMAIL1 0.3
+score LISTAMAIL2 0.3
+score LISTAMAIL3 0.3
+score LISTAMAIL4 0.3
+body LISTAMAIL1 /Super Lista/i
+body LISTAMAIL2 /emails atualizados/i
+body LISTAMAIL3 /adquirir/i
+body LISTAMAIL4 /milh*es de emails/i
+
+score HOLDEN1 0.3
+score HOLDEN2 0.3
+score HOLDEN3 0.3
+body HOLDEN1 /Holden|Consultoria Ambiental/i
+body HOLDEN2 /consultoria em RH|Consultoria Empresarial/i
+body HOLDEN3 /foco em recrutamento|Consultoria Financeira/i
+
+score GabrielZheng1 0.3
+score GabrielZheng2 0.3
+score GabrielZheng3 0.3
+body GabrielZheng1 /Gabriel Zheng from Laboratory|products|Representative/i
+body GabrielZheng2 /ISO certified|China producing|Biological/i
+body GabrielZheng3 /Distributor|CO2 incubator|Biological Safety Cabinet|High Speed Centrifuge|Ultra Pure Water System/i
+
+score Voip1 0.1
+score Voip2 0.1
+score Voip3 0.1
+body Voip1 /mil minutos para|Plano empresarial|fixo local/i
+body Voip2 /DDD|PABX/i
+body Voip3 /TELEFONES IP|ANTENAS|Voip|SANVOIP/i
+
+score CIELO1 0.3
+score CIELO2 0.3
+score CIELO3 0.3
+body CIELO1 /Cielo Fidelidade|programa de fidelidade CIEL0|Compra premiada/i
+body CIELO2 /concorrendo|concorrer aos sorteios Cielo|desconto em qualquer compra/i
+body CIELO3 /fatura zero|Troque seus pontos antes da data|efetuar compras/i
+
+score AMBIENTE1 0.3
+score AMBIENTE2 0.3
+score AMBIENTE3 0.3
+body AMBIENTE1 /AGRIDEM|NATURAL*|trabalho com gerenciamento de redes e/i
+body AMBIENTE2 /AMBIENTE|reciclado|marca  por valores muito mais atrativos/i
+body AMBIENTE3 /Certificado FSC|posso oferecer melhores custo/i
+
+score ERMINIA_DEUS1 0.3
+score ERMINIA_DEUS2 0.3
+score ERMINIA_DEUS3 0.3
+score ERMINIA_DEUS4 0.3
+score ERMINIA_DEUS5 0.3
+body ERMINIA_DEUS1 /numa cidadezinha distante morreram 3 pessoas/i
+body ERMINIA_DEUS2 /o presidente dos EUA fecha/i
+body ERMINIA_DEUS3 /Depois de 5 longos minutos/i
+body ERMINIA_DEUS4 /onde se encontra seu filho/i
+body ERMINIA_DEUS5 /Esta semana estamos na campanha da perca de peso/i
+
+score CAIXA_EXCEDEU1 0.1
+score CAIXA_EXCEDEU2 0.1
+score CAIXA_EXCEDEU3 0.1
+body CAIXA_EXCEDEU1 /Sua caixa de correio excedeu/i
+body CAIXA_EXCEDEU2 /Para revalidar sua caixa postal/i
+body CAIXA_EXCEDEU3 /o correio ser* desactivado/i
+
+score CARTORIO24h1 0.1
+score CARTORIO24h2 0.1
+score CARTORIO24h3 0.1
+score CARTORIO24h4 0.1
+score CARTORIO24h5 0.1
+body CARTORIO24h1 /o cart*rio eletr*nico|j* est* no ar|24 horas por dia, on-line/
+body CARTORIO24h2 /resolve essas (e outras) burocracias|avisados das coisas que realmente/
+body CARTORIO24h3 /divulgar para mais gente ficar sabendo|Documentos roubados - BO/
+body CARTORIO24h4 /Perde os pontos, mas n*o paga nada|doze meses, quando a autoridade/
+body CARTORIO24h5 /tratameto eficaz para queda de cabelo|tratam seu couro cabeludo/
+
+score NisonInstrumento1 0.1
+score NisonInstrumento2 0.1
+score NisonInstrumento3 0.1
+score NisonInstrumento4 0.1
+body NisonInstrumento1 /Gabriel Zheng/i
+body NisonInstrumento2 /Equipment Manufacturer Nison Instrumento/i
+body NisonInstrumento3 /interesse em trabalhar conosco/i
+body NisonInstrumento4 /pessoa encarregada de produtos/i
+
+score Etiquetas1 0.1
+score Etiquetas2 0.1
+score Etiquetas3 0.1
+score Etiquetas4 0.1
+body Etiquetas1 /Etiquetas Personalizadas em diversos materiais/i
+body Etiquetas2 /Etiquetas prontas para envio de Folders/i
+body Etiquetas3 /Nosso diferencial/i
+body Etiquetas4 /Voce pode enviar|RUAS ou BAIRROS que escolher/i
+
+score SulAmerica1 0.1
+score SulAmerica2 0.1
+score SulAmerica3 0.1
+score SulAmerica4 0.1
+body SulAmerica1 /plano da Sul Am*rica|quer fazer um plano da Sul|Sul Am*rica Sa*de PME|atendimento e transparente em todo o processo/i
+body SulAmerica2 /Venha para Qualicorp|referenciada com m*dicos|do mercado para sua empresa/i
+body SulAmerica3 /em breve|Plano Pequenas e Micro Empresas/i
+body SulAmerica4 /Corretor de Vendas|cobertura nacional/i
+
+score english_spam1 0.1
+score english_spam2 0.1
+score english_spam3 0.1
+score english_spam4 0.1
+body english_spam1 /Good evening Artigos|TELEGRAPHIC TRANSFER NOTICE|cooperation with you|unique and safe method of increase|I am Mr.Ma Guang|How are you doing|Greetings to you|profit of higher education|from prestigious Universities|technique and any girl|The following list of domain names are available for backorder|your strategy of building|GT_R_L got me two times my investment|Hollywood aims to cut spendings|Our company do the Automobile Shape USB Flash Drive|Film productions are growing|View attached link|If you would like more details about|Business Loan Commercial loan/i
+body english_spam2 /Have a perfect qualification|noticing you concerning your|interest rate and a total period|It is checked up|Lu,Reply me for|have much time for attendin|I have already sent|disposed to believe|qualification and wide experience|goods for the me|Dont miss your opportunity to own one of these great domains|I heard that you could get any|two cent and its soaring|in Finding of Lower Spendings|We can accept MOQ order only 50PCS|the slowdown is over|How are you doing today|Business Loan Commercial loan/i
+body english_spam3 /Degrees from an Established|informed that the Governor has signed|added on Skype ID|The helpful information|a huge *17.3M|you get considerable|not sure that the letter|clearly showed considerable differences|to approach the dream|restoration of your possibilities|names and you will be taken to the backorder page|any degree you might need|soaring to 6 cent shortly|When large portion|EM design for Free Shipping Charge|Mexico as announced in headlines|Please do forgive me for invading your privacy|Financing Personal Loan For more information/i
+body english_spam4 /Business Opportunity|These are the information we needed to clarify you|faster communication and always|on assortment|business immediately|tired and just call us|six Million Five hundred|higher education considerably rises|interviews and additional expenses|Efficiency is proved|Edit your NameJet email subscription preferences|Call them leaving your first and last|We warned you it shall|ollywood contracts goes to|We also have 200 different models Automobile|developments recently there|convey a very important message/i
+
+score vai_acabar1 0.1
+score vai_acabar2 0.1
+score vai_acabar3 0.1
+body vai_acabar1 /Nossa oferta de hoje/i
+body vai_acabar2 /perca a chance de adquirir/i
+body vai_acabar3 /Uma super promo*/i
+
+score nome_senhor1 0.1
+score nome_senhor2 0.1
+score nome_senhor3 0.1
+score nome_senhor4 0.1
+body nome_senhor1 /Sa*do-vos em nome do Senhor|poderiam herdar sua fortuna|quer servir ao Senhor/i
+body nome_senhor2 /Estou casada com o Sr. Williams Adams|Com uma parte desse dinheiro|para proporcionar facilidades|poderiam herdar sua fortuna/i
+body nome_senhor3 /antes de sua morte fomos ambos|falecido marido/i
+body nome_senhor4 /quantia de US $ 2,5 mi*|benefici*rio actual deste dinheiro|contato da empresa de seguran*/i
+
+score banco_central_londres1 0.1
+score banco_central_londres2 0.1
+score banco_central_londres3 0.1
+score banco_central_londres4 0.1
+body banco_central_londres1 /diretor do Banco Central de Londres/i
+body banco_central_londres2 /para buscar o seu conceito/i
+body banco_central_londres3 /livre de risco para voltar para mim/i
+body banco_central_londres4 /disposto a ajudar para que eu possa/i
+
+score melhore_vida_sexual1 0.1
+score melhore_vida_sexual2 0.1
+score melhore_vida_sexual3 0.1
+score melhore_vida_sexual4 0.1
+body melhore_vida_sexual /No programa Leo d* dica para apimentar|aumentar MUITO seu penis/i
+body melhore_vida_sexual /Leo se mostra uma pessoa bem-humorada|Tenha orgasmos muito mais demorados e intensos/i
+body melhore_vida_sexual /apimentar uma rela* amorosa|Confira o bate-bola com Leo|ejaculacao precoce/i
+body melhore_vida_sexual /sofreram com impot*cia Sexua|Saiba como eles fizeram para solucionar|impotencia Sexual/i
+
+score liquido_magico1 0.1
+score liquido_magico2 0.1
+score liquido_magico3 0.1
+score liquido_magico4 0.1
+body liquido_magico1 /melhorar o desempenho do seu carro|reaplicar novamente o produto|desempenho nas mais severas/i
+body liquido_magico2 /subsolo virgem e natural|entrar em contato com o metal|revitalizar o conjunto motriz/i
+body liquido_magico3 /total  desempenho|tratamento revitalizador|existente no mercado mundial/i
+body liquido_magico4 /proporcionar ECONOMIA e DURABILIDADE|motores com alta KM|Acesse agora e compre online/i
+
+score clarotv1 0.1
+score clarotv2 0.1
+score clarotv3 0.1
+body clarotv1 /A melhor TV por assinatura - CLARO TV|melhor da tecnologia HD ao seu alcance/i
+body clarotv2 /Para remover responda com o assunto : cancelar|CLARO HD TV/i
+body clarotv3 /ou Ligue 0800-776-0060|clarotvporassinatura.net.br/i
+
+score ticiane1 0.1
+score ticiane2 0.1
+score ticiane3 0.1
+score ticiane4 0.1
+body ticiane1 /burocracias, 24 horas por dia, on-line/i
+body ticiane2 /com base no Art. 267 do CTB/i
+body ticiane3 /Artistas Famosos e celebridades perdem Peso/i
+body ticiane4 /custa divulgar para mais gente ficar sabendo/i
+
+score confec_camisetas1 0.1
+score confec_camisetas2 0.1
+score confec_camisetas3 0.1
+body confec_camisetas1 /No site Circus Camisetas|Confeccionamos em v*rios modelos/i
+body confec_camisetas2 /criar com exclusividade sua camiseta personalizada|camiseta manga longa e outros/i
+body confec_camisetas3 /Confira nossas novidades|podem ser usadas tanto para moda/i
+
+score fumar1 0.1
+score fumar2 0.1
+score fumar3 0.1
+body fumar1 /Comecei a fumar com 17 para 18 anos|mau cheiro|dentes amarelo/i
+body fumar2 /Excessivamente fumei durante|largar o cigarro de uma vez/i
+body fumar3 /resolvi dar uma nova chance|sentia vergonha quando ia me relacionar/i
+
+score mailmarketing1 0.1
+score mailmarketing2 0.1
+score mailmarketing3 0.1
+body mailmarketing1 /O Magic Seven|Envio de emails em texto ou HTML|Envio de emails com total|50 mil mensagens/i
+body mailmarketing2 /envio de emails e de email marketing|Envio com a maior velocidade|istas de emails nos envios|sem limita* de quantidade/i
+body mailmarketing3 /de forma totalmente ILIMITADA|Envio ILIMITADO de emails|captacao de novos clientes e campanhas via e-mail/i
+
+score salvadados1 0.1
+score salvadados2 0.1
+score salvadados3 0.1
+body salvadados1 /especializada em backup/i
+body salvadados2 /armazenamento remoto on-line/i
+body salvadados3 /ferramenta de acesso remoto/i
+
+score contapremium1 0.1
+score contapremium2 0.1
+score contapremium3 0.1
+body contapremium1 /Garanta sua Conta Premium/i
+body contapremium2 /Velocidade Mima nos downloads|que garante Velocidade/i
+body contapremium3 /Assistir Filmes Online sem publicidade/i
+
+score bisoft1 0.1
+score bisoft2 0.1
+score bisoft3 0.1
+body bisoft1 /diretor comercial da InfoWay|Autorizado da Riosoft|qual telefone posso lhe contatar/i
+body bisoft2 /Desenvolvemos uma metodologia|mais completos do mercado|respeitar o seu tempo/i
+body bisoft3 /nossos sistemas ERP|BI integrado|Metodologia Express/i
+
+score faturavencida1 0.1
+score faturavencida2 0.1
+score faturavencida3 0.1
+body faturavencida1 /Hircon Acessoria Consultoria e Ltda|entre em contato com|Consta em nosso sistema|Sua fatura ja encontra-se vencida/i
+body faturavencida2 /fatura vencida|enviado automaticamente|por falta de pagamentoi|sejamos obrigados a rever seu cadastro|em anexo sua fatura/i
+body faturavencida3 /efetuado o pagamento|segue o boleto em anexo|com data e valores atualizados/i
+
+score baminco1 0.1
+score baminco2 0.1
+score baminco3 0.1
+body baminco1 /Executamos com eficiencia e rapidez as baixas do seu cpf ou cnpj/i
+body baminco2 /Chega de sofre tentando uma/i
+body baminco3 /levantamento das suas dividas/i
+
+score riosex1 0.1
+score riosex2 0.1
+score riosex3 0.1
+body riosex1 /milhares de fotos e v*deos exclusivos|Se preferir entre no site www.riosexsite.net|pessoas que quiserem acessar o ensaio fotogr*fico completo/i
+body riosex2 /maisde 50 acompanhantes|acompanhantes|50 acompanhantes|Newsletter M*Class/i
+body riosex3 /stamos enviando nossa newsletter/i
+
+score tvsony1 0.1
+score tvsony2 0.1
+score tvsony3 0.1
+score tvsony4 0.1
+body tvsony1 /3D em sua casa/i
+body tvsony2 /digital de alta/i
+body tvsony3 /O Motion Flow 240Hz/i
+body tvsony4 /Internet com muito mais qualidade/i
+
+score viagra1 0.1
+score viagra2 0.1
+score viagra3 0.1
+score viagra4 0.1
+body viagra1 /ProviMax foi considerado/i
+body viagra2 /conhecido por levantar o astral/i
+body viagra3 /permitir que o homem tenha/i
+body viagra4 /enquanto durarem os nossos estoques/i
+
+score SPC1 0.1
+score SPC2 0.1
+score SPC3 0.1
+score SPC4 0.1
+body SPC1 /Comunicamos que seu/i
+body SPC2 /consta em nossos cadastros por motivo/i
+body SPC3 /abaixo relacionada/i
+body SPC4 /existem maneiras alternativas de remover o seu CPF/i
+
+score NFE1 0.1
+score NFE2 0.1
+score NFE3 0.1
+body NFE1 /Segue Anexo a Nota Fiscal Eletr|Emissao de Nota Fiscal|este e-mail refere-se * Nota Fiscal Eletr*nica de Servi*os|Mensagem referente a Nota Fiscal Eletr*nica Nacional de n*mero/i
+body NFE2 /Este arquivo deve ser armazenado|para acesso * nota fiscal eletronica|Para visualizar a autoriza*o da SEFAZ referente * nota acima mencionada, acesse/i
+body NFE3 /NOTA FISCAL em PDF onde|Codigo de Verificacao|Nota Fiscal nro|Nota Fiscal Eletr/i
+
+score RECUPERAHD1 0.1
+score RECUPERAHD2 0.1
+score RECUPERAHD3 0.1
+body RECUPERAHD1 /Problemas com seu HD/i
+body RECUPERAHD2 /tente recuperar os seus arquivos pois isso pode causar mais problemas/i
+body RECUPERAHD3 /Energy Recovery recupera os seus dados/i
+
+score PERFUME_SEXO1 0.1
+score PERFUME_SEXO2 0.1
+score PERFUME_SEXO3 0.1
+body PERFUME_SEXO1 /Perfume que deixa as Pessoa sexo oposto atraida/i
+body PERFUME_SEXO2 /cientificamente para atrair pessoa/i
+body PERFUME_SEXO3 /melhorar a sua vida amorosa/i
+
+
+score WhatsApp1 0.1
+score WhatsApp2 0.1
+score WhatsApp3 0.1
+body WhatsApp1 /You have a new voicemail/i
+body WhatsApp2 /If you cannot play, move message to the/i
+body WhatsApp3 /Time of Call/i
+
+score ABUSO1 0.1
+score ABUSO2 0.1
+score ABUSO3 0.1
+body ABUSO1 /abuso da internet em sua empresa/i
+body ABUSO2 /controlar e monitorar/i
+body ABUSO3 /Solicite agora um teste e instale em sua empresa|Solicite agora um teste GRATUITO e instale em sua empresa/i
+
+score POLICIA1 0.1
+score POLICIA2 0.1
+score POLICIA3 0.1
+body POLICIA1 /Atendendo a uma denuncia/i
+body POLICIA2 /de Ocorrencia/i
+body POLICIA3 /estamos entrando em contato/i
+
+score INTIMACAO1 0.2
+score INTIMACAO2 0.2
+score INTIMACAO3 0.2
+body INTIMACAO1 /o para comparecimento em Audi|Data do comparecimento/i
+body INTIMACAO2 /Motivo e Informa*es sobre a Intima*o|Visualizar_Inti|MINISTERIO PUBLICO DA JUSTICA/i
+body INTIMACAO3 /Departamento de Policia Federal|INTIMA Vossa Senhoria a comparecer nessa procuradoria Regional da Republica/i
+
+score SEGREDO1 0.1
+score SEGREDO2 0.1
+score SEGREDO3 0.1
+body SEGREDO1 /Vou te contar um segredo|quer saber o segredo/i
+body SEGREDO2 /quanto mais pessoas curtindo sua p*gina, mais pessoas receber*o seus conte*dos|suas redes sociais n*o trazem retorno/i
+body SEGREDO3 /Possui uma p*gina no Facebook mas n*o sabe como aumentar sua popularidade, ent*o este servi*o foi feito pra voc*|quer ter milhares de f*s no seu facebook agora/i
+
+score PROTESTE1 0.1
+score PROTESTE2 0.1
+score PROTESTE3 0.1
+body PROTESTE1 /A PROTESTE tem o prazer de informar que voc* foi escolhido para ganhar|Se n*o desejar receber periodicamente ofertas de presentes gr*tis|ESTES PRESENTES PODEM SER TODOS SEUS|Seu nome consta da lista de clientes considerados para a oportunidade de ganhar at* 3 presentes valiosos|A PROTESTE selecionou voc* para receber|presente de boas-vindas|foi classificado para a etapa final|VANTAGENS EXCLUSIVAS|Corra e confirme agora o seu interesse|jantar luxuoso|Proteste/i
+body PROTESTE2 /se juntar hoje * maior associa*o de consumidores do pa*s|no programa de relacionamento da Proteste ou de seus parceiros|voc* ir* receber mensalmente uma publica*o de nossa revista sem publicidades|associe-se agora mesmo|PROTESTE oferece|Continue e descubra qual deles|Grande Concurso de Sele|avaliou diversos modelos e marcas|Grande Ganhador|se for o ganhador|Uma equipe de especialistas de Direito do Consumidor/i
+body PROTESTE3 /benef*cios que a PROTESTE pode oferecer a voc*|Presentes valiosos|ainda aprende a fazer as melhores compras|Presentes GR*TIS j* est*o reservados em seu nome|reservado em seu nome|www.selecoes.com.br|fazer valer seu poder de compra|comprar os melhores produtos ou contratar|Quer ter a chance de ser o nosso|garanta a chance|Acesso a um Clube de Vantagens/i
+
+score CONSULTOR1 0.2
+score CONSULTOR2 0.2
+score CONSULTOR3 0.2
+body CONSULTOR1 /Viva sem d*vidas|confira como aumentar as vendas e reduzir os custos/i
+body CONSULTOR2 /Agora voc* pode - seja um consultor de cr*dito|reserve a melhor data para voc* e sua equipe/i
+body CONSULTOR3 /Informa*es acesse:|Aproveite esta oportunidade para participar|Aproveite nossas vantagens/i
+
+score COMPRAS1 0.1
+score COMPRAS2 0.1
+body COMPRAS1 /vista no boleto/i
+body COMPRAS2 /Ou parcele suas compras em at/i
+
+score CONTROLEFINANCEIRO1 0.3
+score CONTROLEFINANCEIRO2 0.3
+score CONTROLEFINANCEIRO3 0.3
+body CONTROLEFINANCEIRO1 /ainda controla suas contas em planilhas do Excel/i
+body CONTROLEFINANCEIRO2 /Mais seguro para salvar seus dados/i
+body CONTROLEFINANCEIRO3 /Acesse nosso site e baixe o software/i
+
+score INFOJURIDICA1 0.1
+score INFOJURIDICA2 0.1
+score INFOJURIDICA3 0.1
+body INFOJURIDICA1 /Oferecemos a voc* a solu*o mais completa para informa*es jur*dicas do Brasil/i
+body INFOJURIDICA2 /deseja acompanhar seus processos na justi*a de forma r*pida e precisa/i
+body INFOJURIDICA3 /convidamos voc* a experimentar sem compromisso/i
+
+score CUPCAKES1 0.1
+score CUPCAKES2 0.1
+score CUPCAKES3 0.1
+body CUPCAKES1 /Aprenda a fazer os mais/i
+body CUPCAKES2 /Lindos e Deliciosos Cupcakes/i
+body CUPCAKES3 /Curso-de-cupcake/i
+
+score VIVOCEL1 0.1
+score VIVOCEL2 0.1
+score VIVOCEL3 0.1
+body VIVOCEL1 /VIVO Internet Box|vivoempresas.com.br/i
+body VIVOCEL2 /Maior cobertura 3G e 4G|SAIBA MAIS SOBRE ESSA OFERTA|Vivo tem a maior cobertura do Brasil/i
+body VIVOCEL3 /funciona com o sinal 3G Plus e 4G|Vivo Modemi|Fale ilimitado com qualquer celular Vivo/i
+
+score CORPORH1 0.1
+score CORPORH2 0.1
+score CORPORH3 0.1
+body CORPORH1 /Como Planejar e Administrar uma Empresa|quer melhorar os resultados da sua empresa/i
+body CORPORH2 /os Segredos das Empresas Bem Sucedidas|venha participar do Treinamento/i
+body CORPORH3 /www.corporh.com.br/i
+
+score USPS1 0.1
+score USPS2 0.1
+score USPS3 0.1
+body USPS1 /USPS.COM|E-ZPass/i
+body USPS2 /Print Shipping Label|Print Shipping Receipt|You have not paid for driving on a toll road/i
+body USPS3 /BBC Latest News|Word Latest News|The invoice can be downloaded|This invoice is sent repeatedly/i
+
+score GIRONEWS1 0.1
+score GIRONEWS2 0.1
+score GIRONEWS3 0.3
+body GIRONEWS1 /recebendo as principais informa/i
+body GIRONEWS2 /Se inscreva para continuar recebendo/i
+body GIRONEWS3 /paga nada por esse servi/i
+
+score AUTOAJUDA1 0.1
+score AUTOAJUDA2 0.1
+score AUTOAJUDA3 0.1
+body AUTOAJUDA1 /se beneficiar desse grande poder|parou para pensar que o sucesso financeiro|Foi revelado o segredo do sucesso|Quero lhe apresentar uma agenda que vai mudar a sua vida|para que ele funcione de forma a lhe trazer muitos|vai mudar sua forma de pensar e agir/i
+body AUTOAJUDA2 /A sua palavra passa a ter poder|tornar uma pessoa totalmente diferentei|Desvende a sorte e o azar|Voltado a qualquer pessoa que queira otimizar seu tempo|fique a vontade e desfrute dessa nova descoberta em sua vida|Acesse agora o site e descubra como desenvolver seu poder pessoal/i
+body AUTOAJUDA3 /wgtdesign.com.br|ensina sobre como reprogramar sua mente/i
+
+score OITELECOM1 0.1
+score OITELECOM2 0.1
+score OITELECOM3 0.1
+body OITELECOM1 /oitelecom.org.br/i
+body OITELECOM2 /emitida pelo operador e prestador de/i
+body OITELECOM3 /OI TELECOM/i
+
+score DEPOSITOBANC1 0.1
+score DEPOSITOBANC2 0.1
+score DEPOSITOBANC3 0.1
+body DEPOSITOBANC1 /Comprovante Deposito/i
+body DEPOSITOBANC2 /Segue em anexo o comprovante de dep/i
+body DEPOSITOBANC3 /Pedimos que confira seus dados e verifique se todas as inform/i
+
+score VIDEOXPRESS1 0.2
+score VIDEOXPRESS2 0.2
+score VIDEOXPRESS3 0.2
+body VIDEOXPRESS1 /Com o VideoXpress voc|tirar Fotos Sensacionais/i
+body VIDEOXPRESS2 /ter que investir em equipamento|ser um profissional de Photoshop/i
+body VIDEOXPRESS3 /juntar tudo no Sony Vegas|olhos esbugalhados/i
+
+score ASSINATURAS1 0.1
+score ASSINATURAS2 0.1
+score ASSINATURAS3 0.1
+body ASSINATURAS1 /ASSINE ARQUITETURA|assineestadao|Editora Abril|Abril Assinaturas|Assine revistas Abril|Assine EXAME/i
+body ASSINATURAS2 /Assine e ganhe|Confira outros destaques|Assine VEJA|Assine por 1 ano|assinante Abril|Capa de EXAME|MINHA CASA| Revista Saude|assinando veja/i
+body ASSINATURAS3 /leitor*assinante|estadao-impresso|Com VEJA toda semana|Assinando VEJA|revista digital|Revista Veja|Capas/i
+
+score APRENDAVIOLAO1 0.1
+score APRENDAVIOLAO2 0.1
+score APRENDAVIOLAO3 0.1
+body APRENDAVIOLAO1 /Aprenda a Tocar/i
+body APRENDAVIOLAO2 /sem sair de casa de forma totalmente/i
+body APRENDAVIOLAO3 /Venha aprender a Tocar/i
+
+score CURRICULO1 0.1
+score CURRICULO2 0.1
+score CURRICULO3 0.1
+body CURRICULO1 /uma honra poder entrar em contato com|Vilma Alencar Barreto|ROSANE BALDESSIN|Marlon Dornelles Fagundes|Mirian Meireles|Naiara Vasconcelos Kister|Vera Macedo Lustosa|Heloisa Lima Rocha|Melissa Fagundes Dias|Fernanda Ribeiro/i
+body CURRICULO2 /IOBRAS TECNOLOGIA E EMPREENDEDORISMO|Espero que possa apreciar e me indicar para algum cargo|TECNOLOGIA INDUSTRIAL DE RASTREAMENTO/i
+body CURRICULO3 /envio meu curriculum para|tenho o maior interesse em voltar ao mercado de trabalho/i
+
+score ABDOMENDEF1 0.1
+score ABDOMENDEF2 0.1
+score ABDOMENDEF3 0.1
+body ABDOMENDEF1 /uma barriga de dar inveja|PERDER COMPLETAMENTE A BARRIGA/i
+body ABDOMENDEF2 /perder a gordura abdominal|meneira inusitada/i
+body ABDOMENDEF3 /www.hmdpr.com.br|www.hmdrs.com.br|www.hmdmg.com.br|COMER TUDO O QUE/i
+
+score SUOREXCESSIVO1 0.1
+score SUOREXCESSIVO2 0.1
+score SUOREXCESSIVO3 0.1
+body SUOREXCESSIVO1 /suor excessivo no corpo/i
+body SUOREXCESSIVO2 /Com este tratamento natural/i
+body SUOREXCESSIVO3 /confiante e livre para fazer o que quiser/i
+
+score NATURA1 0.1
+score NATURA2 0.1
+score NATURA3 0.1
+body NATURA1 /Natura agora em todo o Brasil/i
+body NATURA2 /Para comprar produtos da Natura acesse/i
+body NATURA3 /consultoraspina/i
+
+score CADERNOINTELIGENTE1 0.1
+score CADERNOINTELIGENTE2 0.1
+score CADERNOINTELIGENTE3 0.1
+body CADERNOINTELIGENTE1 /Visite o site do caderno inteligente/i
+body CADERNOINTELIGENTE2 /utilizando as folhas lisas brancas ou coloridas/i
+body CADERNOINTELIGENTE3 /Caderno Inteligente/i
+
+score COMTUR1 0.1
+score COMTUR2 0.1
+score COMTUR3 0.1
+body COMTUR1 /Vanessa Amaral Felix|Jean Ruffier/i
+body COMTUR2 /COMTUR/i
+body COMTUR3 /COM TODA A DIRETORIA./i
+
+#===================================================================================#
+## Spam Advanced Detect
+
+# Niveis
+
+score NV1_1 0.2
+score NV1_2 0.2
+score NV1_3 0.2
+score NV1_4 0.2
+body NV1_1 /clique|acesse|siga|neste|click|Fale Conosco|COM FRETE INCLUSO|autorizados|obtidas em nosso site|a sua lista de contatos|entre em contato|Cadastre-se aqui|garantir que nossos comunicados cheguem|Envie um email para|cancele o recebimento|e tire todas suas duvidas|Veja no seu navegador|copie e cole o|Veja no seu navegador|descontos progressivos|Confirme a|CLIkUE Akui/i
+body NV1_2 /remover|REMOwER|descadastr*|exclu*|adicionar|cancel*|unsubscribe|subscription|envie gr*tis|Clique aqui para ser removido|clique neste link|remova aqui|queira receber mais|Para deixar de receber essa newsletter|deseja mais receber nossas ofertas|removido em|queira mais receber nossos|sair desta newsletter|quero mais receber e-mails|caso deseje sair|N*O QUERO|ENTRE EM CONTATO CONOSCO|clique aqui|Clique nesse link|clicando no link|Cuidado com fraudes e e-mails|use este endere|utilize este endere|Clique aqui para ser removido|desejo receber mais e-mails|deseja mais receber nossas mensagens|Para falar conosco envie um email para|Desejo Deixar de Receber|remova seu email|Use por aqui se n|curte receber isso/i
+body NV1_3 /visualiz*|lista|instru*|inscri*|link|grupo|plain|entrega*|pagamento|Veja alguns exemplos|visualizar a mensagem abaixo|Preecha o formul*rio|Spam e respeita a sua privacidade|preencha o formul*|Visite o site e confira|precisa preencher seus dados/i
+body NV1_4 /receb*|automaticamente|interesse|desej*|grupo|respeita a sua privacidade e * contra o spam|Este e-mail foi enviado para|e-mail com o assunto sair|emails de publicidade|a sua lista de contatos|Para participar|Confira o regulamento|nossos comunicados|Encaminhe uma mensagem para alguem|Denuncias para abuse/i
+
+score NV2_1 0.2
+score NV2_2 0.2
+score NV2_3 0.2
+body NV2_1 /encaminh*|compr*|neg.cio*|imagens|Seu visualizador de e-mail est* configurado|Leia Mais/i
+body NV2_2 /corretamente|anexo|tabela*|meramente|descr*|acesse este link/i
+body NV2_3 /estoque*|parceiro*|oferta*|ilustrativas|de R$ *|Mega Sal*|Veja nossos/i
+
+score NV3_1 0.2
+body NV3_1 /newsletter|informativo|folder|Problemas para visualizar a mensagem|Quero encaminhar essa mensagem para meus contatos/i
+
+score NO_DVSISTEMAS 1.5
+meta NO_DVSISTEMAS (( NFE_DVSISTEMAS1 + NFE_DVSISTEMAS2 + NFE_DVSISTEMAS3 + NFE_DVSISTEMAS4 ) > 3 )
+
+# Agravantes
+
+
+score NV_AG1 0.1
+body NV_AG1 /Para garantir que nossos comunicados cheguem/i
+
+score NV_AG2_1 0.1
+score NV_AG2_2 0.1
+body NV_AG2_1 /Como parte do compromisso/i
+body NV_AG2_2 /produto*/i
+
+
+score EMPRESA1_1 0.1
+score EMPRESA1_2 0.1
+score EMPRESA1_3 0.1
+score EMPRESA1_4 0.1
+body EMPRESA1_1 /amplie/i
+body EMPRESA1_2 /empresa/i
+body EMPRESA1_3 /desejo/i
+body EMPRESA1_4 /curso/i
+
+score INVEST1_1 0.1
+score INVEST1_2 0.1
+score INVEST1_3 0.1
+score INVEST1_4 0.1
+body INVEST1_1 /invest*/i
+body INVEST1_2 /treina*|invista no mercado de Games/i
+body INVEST1_3 /Invista com a gente/i
+body INVEST1_4 /compet*|ganhar dinheiro e ajudar o Brasil|No boleto ou pagseguro/i
+
+score CURRICULOFERNANDA1 0.1
+score CURRICULOFERNANDA2 0.1
+score CURRICULOFERNANDA3 0.1
+body CURRICULOFERNANDA1 /Conforme combinado em reuni/i
+body CURRICULOFERNANDA2 /venho informar que me coloco a disposi/i
+body CURRICULOFERNANDA3 /Aguardo contato. ( Dados de contato junto ao curriculum ANEXO )./i
+
+score DEBITOATRAZADO1 0.1
+score DEBITOATRAZADO2 0.1
+score DEBITOATRAZADO3 0.1
+body DEBITOATRAZADO1 /de debito em atraso, segue anexo/i
+body DEBITOATRAZADO2 / Caso seja solicitado protocolo pela nossa central de atendimento/i
+body DEBITOATRAZADO3 /Comercial e Assessoria Ltda/i
+
+score TOTALORCAMENTO1 0.3
+score TOTALORCAMENTO2 0.3
+score TOTALORCAMENTO3 0.3
+body TOTALORCAMENTO1 /Prezado Cliente:/i
+body TOTALORCAMENTO2 /Segue em anexo/i
+body TOTALORCAMENTO3 /Juliana Silva/i
+
+score NATURANAINTERNETB1 0.3
+score NATURANAINTERNETB2 0.3
+score NATURANAINTERNETB3 0.3
+body NATURANAINTERNETB1 /Natura agora em todo o Brasil:/i
+body NATURANAINTERNETB2 /Para comprar produtos da Natura acesse/i
+body NATURANAINTERNETB3 /Ou ligue para: 11 2609-8424/i
+
+score TRANSFERENCIATED1 0.3
+score TRANSFERENCIATED2 0.3
+score TRANSFERENCIATED3 0.3
+body TRANSFERENCIATED1 /Arquivo(s) em Anexo(s)  : Comprovante.zip/i
+body TRANSFERENCIATED2 /segue na mensagem em anexo o comprovante de transfer/i
+body TRANSFERENCIATED3 /Pedro Rabelo/i
+
+score CANAISADULTOSEMHD1 0.4
+score CANAISADULTOSEMHD2 0.4
+score CANAISADULTOSEMHD3 0.4
+body CANAISADULTOSEMHD1 /CANAIS ADULTOS em HD/i
+body CANAISADULTOSEMHD2 /Isso tudo usando apenas a Internet? E o melhor: Sem pagar assinatura Mensal/i
+body CANAISADULTOSEMHD3 /Jogos de Futebol /i
+
+score CANAISADULTOSEMHDX1 0.4
+score CANAISADULTOSEMHDX2 0.4
+score CANAISADULTOSEMHDX3 0.4
+body CANAISADULTOSEMHDX1 /CANAIS ADULTOS em HD/i
+body CANAISADULTOSEMHDX2 /Isso tudo usando apenas a Internet? E o melhor: Sem pagar assinatura Mensal/i
+body CANAISADULTOSEMHDX3 /Jogos de Futebol /i
+
+score CASASBAHIAPEDIDO1 0.3
+score CASASBAHIAPEDIDO2 0.3
+score CASASBAHIAPEDIDO3 0.3
+body CASASBAHIAPEDIDO1 /Casas Bahia | Seu pedido foi aprovado/i
+body CASASBAHIAPEDIDO2 /foi aprovado pela instituiç financeira e de acordo/i
+body CASASBAHIAPEDIDO3 /com as polícas internas das CasasBahia.com.br/i
+
+
+score GANHOENTRE60E600PORDIA1 0.3
+score GANHOENTRE60E600PORDIA2 0.3
+score GANHOENTRE60E600PORDIA3 0.3
+body GANHOENTRE60E600PORDIA1 /Com ela eu ganho entre 60 e 600 por dia/i
+body GANHOENTRE60E600PORDIA2 /Este nãém Marketig Multi-Níl e nãexistem níis nem recrutamento./i
+body GANHOENTRE60E600PORDIA3 /Conquista sua independêia financeira!/i
+
+
+score PEDIDOTRANSPORTADORA1 0.2
+score PEDIDOTRANSPORTADORA2 0.2
+score PEDIDOTRANSPORTADORA3 0.2
+body PEDIDOTRANSPORTADORA1 /Foi emitida uma NF-e Nota/i
+body PEDIDOTRANSPORTADORA2 /Chave de acesso:/i
+body PEDIDOTRANSPORTADORA3 /o Documento Auxiliar da Nota Fiscal/i
+
+score SANTANDERNEW1 0.2
+score SANTANDERNEW2 0.2
+score SANTANDERNEW3 0.2
+body SANTANDERNEW1 /O Santander, vem/i
+body SANTANDERNEW2 /realiza o procedimento de regulariza/i
+body SANTANDERNEW3 /automaticamente suspenso aos terminais de atendimento /i
+
+#NOVAREGRA
+
+
+
+#score CONTABILIDADE1 0.1
+#score CONTABILIDADE2 0.1
+#score CONTABILIDADE3 0.1
+#score CONTABILIDADE4 0.1
+#body CONTABILIDADE1 /contabil*/i
+#body CONTABILIDADE2 /para/i
+#body CONTABILIDADE3 /contador*/i
+#body CONTABILIDADE4 /aprend*/i
+
+score GANHAR1 0.1
+score GANHAR2 0.1
+score GANHAR3 0.1
+body GANHAR1 /entre|agora|voc* foi o ganhador/i
+body GANHAR2 /ganhe|chance de ganhar|mais dinheiro ganhamos|receber todos os benef*cios/i
+body GANHAR3 /dinheiro|premio*/i
+
+score FESTA1 0.1
+score FESTA2 0.1
+score FESTA3 0.1
+body FESTA1 /presenteia/i
+body FESTA2 /mega/i
+body FESTA3 /festa*/i
+
+
+
+# Contorno
+
+score ORACLE1 0.1
+score ORACLE2 0.1
+body ORACLE1 /exporting profiles/i
+body ORACLE2 /exporting table/i
+
+#================== Meta ====================#
+
+score NO_CREDIT 3
+meta NO_CREDIT (( CREDIT1 + CREDIT2 + CREDIT3) > 2 ) 
+
+score NO_ITOKEN 3
+meta NO_ITOKEN (( ITOKEN1 + ITOKEN2 + ITOKEN3 + ITOKEN4) > 3 ) 
+
+score NO_TRIBUNAL 10
+meta NO_TRIBUNAL (( TRIBUNAL1 + TRIBUNAL2 + TRIBUNAL3 ) > 2 ) 
+
+score NO_SERRA 10
+meta NO_SERRA (( SERRA1 + SERRA2 + SERRA3 ) > 2 )
+
+score NO_TREIN 1.6
+meta NO_TREIN (( TREIN1 + TREIN2 ) > 1 )
+
+score NO_VIAJAR 4
+meta NO_VIAJAR (( VIAJAR + VIAJAR2 + VIAJAR3 ) > 2 )
+
+score NO_LAVAGEM 3
+meta NO_LAVAGEM (( LAVAGEM + LAVAGEM2 + LAVAGEM3 ) > 2 )
+
+score NO_BRADESCO 3
+meta NO_BRADESCO (( BRADESCO + BRADESCO2 + BRADESCO2 ) > 2 )
+
+score NO_BANCOREAL 1.3
+meta NO_BANCOREAL (( BANCOREAL1 + BANCOREAL2 + BANCOREAL3 ) > 2 )
+
+score NO_SANTANDER 2.2
+meta NO_SANTANDER (( SANTANDER1 + SANTANDER2 + SANTANDER3 ) > 2 )
+
+score NO_PT 10
+meta NO_PT (( PT1 + PT2 + PT3 ) > 2 )
+
+score NO_PREMIO_SOFT 2.0
+meta NO_PREMIO_SOFT (( PREMIO_SOFT1 + PREMIO_SOFT2 + PREMIO_SOFT3 + PREMIO_SOFT4 ) > 3 )
+
+score NO_EXPOMEDICAL 3.0
+meta NO_EXPOMEDICAL (( EXPOMEDICAL1 + EXPOMEDICAL2 ) > 1 )
+
+score NO_VENDA2 0.8
+meta NO_VENDA2 (( VENDA2_1 + VENDA2_2 + VENDA2_3 + VENDA2_4 ) > 3 )
+
+score NO_NUMEROFACIL 2.5
+meta NO_NUMEROFACIL (( NUMEROFACIL1 + NUMEROFACIL2 + NUMEROFACIL3 ) > 2 )
+
+score NO_OFERTA_CLUBE_DESCONTO 0.8
+meta NO_OFERTA_CLUBE_DESCONTO (( OFERTA_CLUBE_DESCONTO1 + OFERTA_CLUBE_DESCONTO2 ) > 1 )
+
+score NO_TERAP 1.2
+meta NO_TERAP (( TERAP1 + TERAP2 + TERAP3 ) > 2 )
+
+score NO_Acidentes 2.2
+meta NO_Acidentes (( Acidente1 + Acidente2 + Acidente3 ) > 2 )
+
+score NO_Sec_Fazenda 2.5
+meta NO_Sec_Fazenda (( Sec_Fazenda1 + Sec_Fazenda2 + Sec_Fazenda3 ) > 2 ) 
+
+score NO_MATRICULA 2.0
+meta NO_MATRICULA (( MATRICULA1 + MATRICULA2 + MATRICULA3 ) > 2 )
+
+score NO_MULTA 5.1
+meta NO_MULTA (( MULT1 + MULT2 + MULT3 ) > 2 )
+
+score NO_BALADA 1.5
+meta NO_BALADA (( BALADA1 + BALADA2 + BALADA3 + BALADA4 ) > 3 )
+
+score NO_RECADASTROBB 6
+meta NO_RECADASTROBB (( RECADASTROBB1 + RECADASTROBB2 + RECADASTROBB3 ) > 2 )
+
+score NO_TREIN_FISCAL 2.5
+meta NO_TREIN_FISCAL (( TREIN_FISCAL1 + TREIN_FISCAL2 + TREIN_FISCAL3 + TREIN_FISCAL4 ) > 3 )
+
+score NO_TV_NO_PC1 4.1
+meta NO_TV_NO_PC (( TV_NO_PC1 + TV_NO_PC2 + TV_NO_PC3 ) > 2 )
+
+score NO_TREIN_COACH 1.4
+meta NO_TREIN_COACH ((  TREIN_COACH1 + TREIN_COACH2 + TREIN_COACH3 ) > 2 )
+
+score NO_DEXCOM 2.5
+meta NO_DEXCOM (( DEXCOM1 + DEXCOM2 + DEXCOM3 ) > 2 )
+
+score NO_MUMBAI 2.5
+meta NO_MUMBAI (( MUMBAI1 + MUMBAI2 + MUMBAI3 ) > 2 )
+
+score NO_NETPROMOCAO 3.0
+meta NO_NETPROMOCAO (( NETPROMOCAO1 + NETPROMOCAO2 + NETPROMOCAO3 ) > 2 )
+
+score NO_MODULO_SEGURANCA 7.0
+meta NO_MODULO_SEGURANCA (( MODULO_SEGURANCA1 + MODULO_SEGURANCA2 + MODULO_SEGURANCA3 ) > 2 )
+
+score NO_PORTALBUSCAS 3.3
+meta NO_PORTALBUSCAS (( PORTALBUSCAS1 + PORTALBUSCAS2 + PORTALBUSCAS3 ) > 2 )
+
+score NO_CARTA_EXPRESSA 2.5
+meta NO_CARTA_EXPRESSA (( CARTA_EXPRESSA1 + CARTA_EXPRESSA2 + CARTA_EXPRESSA3 ) > 2 )
+
+score NO_EMAGRECER 4.2
+meta NO_EMAGRECER (( EMAGRECER1 + EMAGRECER2 + EMAGRECER3 + EMAGRECER4 ) > 3 )
+
+score NO_EMAGRECER2 3.0
+meta NO_EMAGRECER2 (( EMAGRECER1_1 + EMAGRECER1_2 + EMAGRECER1_3 ) > 2 )
+
+score NO_LECITINA 3.0
+meta NO_LECITINA (( LECITINA + LECITINA2 + LECITINA3 ) > 2 )
+
+score NO_INNOVA 2.5
+meta NO_INNOVA (( INNOVA + INNOVA2 + INNOVA3 ) > 2 )
+
+score NO_TREIN_GERAL 2.5
+meta NO_TREIN_GERAL (( TREIN_GERAL2 + TREIN_GERAL2 + TREIN_GERAL3 ) > 2 )
+
+score NO_VENDAS_TIM 2.4
+meta NO_VENDAS_TIM (( VENDAS_TIM + VENDAS_TIM2 + VENDAS_TIM3 ) > 2 )
+
+score NO_ADITIVO_AUTOMOTIVO 1.6
+meta NO_ADITIVO_AUTOMOTIVO (( ADITIVO_AUTOMOTIVO + ADITIVO_AUTOMOTIVO2 + ADITIVO_AUTOMOTIVO3 ) > 2 )
+
+score NO_BATERIAS 1.7
+meta NO_BATERIAS (( BATERIAS1 + BATERIAS2 + BATERIAS3 ) > 2 )
+
+score NO_CEL_4CHIPS 2.5
+meta NO_CEL_4CHIPS (( CEL_4CHIPS1 + CEL_4CHIPS2 + CEL_4CHIPS3 + CEL_4CHIPS4 + CEL_4CHIPS5 + CEL_4CHIPS6 ) > 5 )
+
+score NO_PONTO_ELET 4.2
+meta NO_PONTO_ELET (( PONTO_ELET1 + PONTO_ELET2 + PONTO_ELET3 ) > 2 )
+
+score NO_ROLEX 1.8
+meta NO_ROLEX (( ROLEX1 + ROLEX2 + ROLEX3 ) > 2 )
+
+score NO_EMPREENDIMENTO 3.2
+meta NO_EMPREENDIMENTO (( EMPREENDIMENTO1 + EMPREENDIMENTO2 + EMPREENDIMENTO3 + EMPREENDIMENTO4 ) > 3 )
+
+score NO_HOSPEDAGEM 3.5
+meta NO_HOSPEDAGEM (( HOSPEDAGEM1 + HOSPEDAGEM2 + HOSPEDAGEM3 + HOSPEDAGEM4 + HOSPEDAGEM5 ) > 4 ) 
+
+score NO_CONVERTER 3.0
+meta NO_CONVERTER (( CONVERTER1 + CONVERTER2 + CONVERTER3 + CONVERTER4 ) > 3 )
+
+score NO_LISTAMAIL 6.4
+meta NO_LISTAMAIL (( LISTAMAIL1 + LISTAMAIL2 + LISTAMAIL3 + LISTAMAIL4 ) > 3 )
+
+score NO_HOLDEN 3.8
+meta NO_HOLDEN (( HOLDEN1 + HOLDEN2 + HOLDEN3 ) > 2 )
+
+score NO_GabrielZheng 1.5
+meta NO_GabrielZheng (( GabrielZheng1 + GabrielZheng2 + GabrielZheng3 ) > 2 )
+
+score NO_Voip3 2.8
+meta NO_Voip (( Voip1 + Voip2 + Voip3 ) > 2 )
+
+score NO_CIELO 3.4
+meta NO_CIELO (( CIELO1 + CIELO2 + CIELO3 ) > 2 )
+
+score NO_AMBIENTE 1.6
+meta NO_AMBIENTE (( AMBIENTE1 + AMBIENTE2 + AMBIENTE3 ) > 2 )
+
+score NO_ERMINIA_DEUS 0.6
+meta NO_ERMINIA_DEUS ((ERMINIA_DEUS1 + ERMINIA_DEUS2 +  ERMINIA_DEUS3 +  ERMINIA_DEUS4 +  ERMINIA_DEUS5 ) > 4 )
+
+score NO_CAIXA_EXCEDEU 3.7
+meta NO_CAIXA_EXCEDEU (( CAIXA_EXCEDEU1 + CAIXA_EXCEDEU2 + CAIXA_EXCEDEU3 ) > 3 )
+
+score NO_CARTORIO24h 2.4
+meta NO_CARTORIO24h (( CARTORIO24h1 + CARTORIO24h2 + CARTORIO24h3 + CARTORIO24h4 + CARTORIO24h5 ) > 4 ) 
+
+score NO_NisonInstrumento 2.8
+meta NO_NisonInstrumento (( NisonInstrumento1 +  NisonInstrumento2 +  NisonInstrumento3 +  NisonInstrumento4 ) > 3 )
+
+score NO_Etiquetas 1.3
+meta NO_Etiquetas (( Etiquetas1 + Etiquetas2 + Etiquetas3 + Etiquetas4 ) > 3 )
+
+score No_SulAmerica 1.2
+meta No_SulAmerica (( SulAmerica1 + SulAmerica2 + SulAmerica3 + SulAmerica4 ) > 3 )
+
+score No_english_spam 4.8
+meta No_english_spam (( english_spam1 + english_spam2 + english_spam3 + english_spam4 ) > 3 )
+
+score No_vai_acabar 2.0
+meta No_vai_acabar (( vai_acabar1 + vai_acabar2 + vai_acabar3 ) > 2 )
+
+score NO_nome_senhor 2.5
+meta NO_nome_senhor (( nome_senhor1 + nome_senhor2 + nome_senhor3 + nome_senhor4 ) > 3 )
+
+score NO_banco_central_londres 1.5
+meta NO_banco_central_londres (( banco_central_londres1 + banco_central_londres2 + banco_central_londres3 + banco_central_londres4 ) > 3 )
+
+score NO_melhore_vida_sexual 2.3
+meta NO_melhore_vida_sexual (( melhore_vida_sexual1 + melhore_vida_sexual2 + melhore_vida_sexual3 + melhore_vida_sexual4 ) > 3 )
+
+
+score NO_liquido_magico 3.4
+meta NO_liquido_magico (( liquido_magico1 + liquido_magico2 + liquido_magico3 + liquido_magico4 ) > 3 )
+
+score NO_clarotv 4.4
+meta NO_clarotv (( clarotv1 + clarotv2 + clarotv3 ) > 2 )
+
+score NO_ticiane 2.5
+meta NO_ticiane (( ticiane1 + ticiane2 + ticiane3 + ticiane4 ) > 3 )
+
+score NO_confec_camisetas 1.4
+meta NO_confec_camisetas (( confec_camisetas1 + confec_camisetas2 + confec_camisetas3 ) > 2 )
+
+score NO_fumar 1.3
+meta NO_fumar (( fumar1 + fumar2 + fumar3 ) > 2 )
+
+score NO_mailmarketing 2.2
+meta NO_mailmarketing (( mailmarketing1 + mailmarketing2 + mailmarketing3 ) > 2 )
+
+score NO_salvadados 4.8
+meta NO_salvadados (( salvadados1 + salvadados2 + salvadados3 ) > 2 )
+
+score NO_contapremium 3.4
+meta NO_contapremium (( contapremium1 + contapremium2 + contapremium3 ) > 2 )
+
+score NO_bisoft 2.2
+meta NO_bisoft (( bisoft1 + bisoft2 + bisoft3 ) > 2 )
+
+score NO_faturavencida 4.2
+meta NO_faturavencida (( faturavencida1 + faturavencida2 + faturavencida3 ) > 2 )
+
+score NO_baminco 1.2
+meta NO_baminco (( baminco1 + baminco2 + baminco3 ) > 2 )
+
+score NO_riosex 3.0
+meta NO_riosex (( riosex1 + riosex2 + riosex3 ) > 2 )
+
+score NO_tvsony 3.4
+meta NO_tvsony (( tvsony1 + tvsony2 + tvsony3 + tvsony4 ) > 3 )
+
+score NO_provimax 4.0
+meta NO_provimax (( provimax1 + provimax2 + provimax3 + provimax4 ) > 3 )
+
+score NO_SPC 5.0
+meta NO_SPC ((SPC1 + SPC2 + SPC3 + SPC4 ) > 3) 
+
+score NO_NFE 4.5
+meta NO_NFE (( NFE1 + NFE2 + NFE3 ) > 2)
+
+score NO_RECUPERAHD 3.5
+meta NO_RECUPERAHD (( RECUPERAHD1 + RECUPERAHD2 + RECUPERAHD3 ) > 2 )
+
+score NO_PERFUME_SEXO 5.0
+meta NO_PERFUME_SEXO (( PERFUME_SEXO1 +  PERFUME_SEXO2 +  PERFUME_SEXO3 ) > 2 )
+
+score NO_WhatsApp 2.4
+meta NO_WhatsApp  ((WhatsApp1 + WhatsApp2 + WhatsApp3 ) >  2 )
+
+score NO_ABUSO 2.0
+meta NO_ABUSO  ((ABUSO1 + ABUSO2 + ABUSO3 ) >  2 )
+
+score NO_POLICIA 1.0
+meta NO_POLICIA  ((POLICIA1 + POLICIA2 + POLICIA3 ) >  2 )
+
+score NO_INTIMACAO 3.5
+meta NO_INTIMACAO  ((INTIMACAO1 + INTIMACAO2 + INTIMACAO3 ) >  2 )
+
+score NO_SEGREDO 1.2
+meta NO_SEGREDO  ((SEGREDO1 + SEGREDO2 + SEGREDO3 ) >  2 )
+
+score NO_PROTESTE 2.9
+meta NO_PROTESTE  ((PROTESTE1 + PROTESTE2 + PROTESTE3 ) >  2 )
+
+score NO_CONSULTOR 3.6
+meta NO_CONSULTOR  ((CONSULTOR1 + CONSULTOR2 + CONSULTOR3 ) >  2 )
+
+score NO_COMPRAS 1.0
+meta NO_COMPRAS  ((COMPRAS1 + COMPRAS2) >  1 )
+
+score NO_CONTROLEFINANCEIRO 2.8
+meta NO_CONTROLEFINANCEIRO  ((CONTROLEFINANCEIRO1 + CONTROLEFINANCEIRO2 + CONTROLEFINANCEIRO3) >  2 )
+
+score NO_INFOJURIDICA 1.0
+meta NO_INFOJURIDICA ((INFOJURIDICA1 + INFOJURIDICA2 + INFOJURIDICA3) > 2 )
+
+score NO_CUPCAKES 1.6
+meta NO_CUPCAKES ((CUPCAKES1 + CUPCAKES2 + CUPCAKES3) > 2 )
+
+score NO_VIVOCEL 3.1
+meta NO_VIVOCEL ((VIVOCEL1 + VIVOCEL2 + VIVOCEL3) > 2 )
+
+score NO_CORPORH 1.1
+meta NO_CORPORH ((CORPORH1 + CORPORH2 + CORPORH3) > 2 )
+
+score NO_USPS 3.2
+meta NO_USPS ((USPS1 + USPS2 + USPS3) > 2 )
+
+score NO_GIRONEWS 1.4
+meta NO_GIRONEWS ((GIRONEWS1 + GIRONEWS2 + GIRONEWS3) > 2 )
+
+score NO_AUTOAJUDA 3.0
+meta NO_AUTOAJUDA ((AUTOAJUDA1 + AUTOAJUDA2 + AUTOAJUDA3) > 2 )
+
+score NO_OITELECOM 2.8
+meta NO_OITELECOM ((OITELECOM1 + OITELECOM2 + OITELECOM3) > 2 )
+
+score NO_DEPOSITOBANC 2.0
+meta NO_DEPOSITOBANC ((DEPOSITOBANC1 + DEPOSITOBANC2 + DEPOSITOBANC3) > 2 )
+
+score NO_VIDEOXPRESS 1.8
+meta NO_VIDEOXPRESS ((VIDEOXPRESS1 + VIDEOXPRESS2 + VIDEOXPRESS3) > 2 )
+
+score NO_ASSINATURAS 2.0
+meta NO_ASSINATURAS ((ASSINATURAS1 + ASSINATURAS2 + ASSINATURAS3) > 2 )
+
+score NO_APRENDAVIOLAO 1.4
+meta NO_APRENDAVIOLAO ((APRENDAVIOLAO1 + APRENDAVIOLAO2 + APRENDAVIOLAO3) > 2 )
+
+score NO_CURRICULO 2.3
+meta NO_CURRICULO ((CURRICULO1 + CURRICULO2 + CURRICULO3) > 2 )
+
+score NO_ABDOMENDEF 1.0
+meta NO_ABDOMENDEF ((ABDOMENDEF1 + ABDOMENDEF2 + ABDOMENDEF3) > 2 )
+
+score NO_SUOREXCESSIVO 1.0
+meta NO_SUOREXCESSIVO ((SUOREXCESSIVO1 + SUOREXCESSIVO2 + SUOREXCESSIVO3) > 2 )
+
+score NO_NATURA 1.0
+meta NO_NATURA ((NATURA1 + NATURA2 + NATURA3) > 2 )
+
+score NO_CADERNOINTELIGENTE 2.5
+meta NO_CADERNOINTELIGENTE ((CADERNOINTELIGENTE1 + CADERNOINTELIGENTE2 + CADERNOINTELIGENTE3) > 2 )
+
+score NO_COMTUR 1.0
+meta NO_COMTUR ((COMTUR1 + COMTUR2 + COMTUR3) > 2 )
+
+#=====================================================================================================================#
+# Estas regras vao concatenando listas, e adicionando pontos conforme os
+# termos vao sendo encontrados. Caso um termo falhe, os checks param
+#
+
+# Regra Geral
+
+score NO_VENDAS 3.0
+meta NO_VENDAS (( VENDAS1 + VENDAS2 + VENDAS3 + VENDAS4 ) > 3 ) 
+
+#### Regras Avancadas para SPAM
+
+score NO_NV1 1.4
+meta NO_NV1 (( NV1_1 + NV1_2 + NV1_3 + NV1_4 ) > 3 )
+
+score NO_NV2 1.4
+meta NO_NV2 (( NO_NV1 + NV2_1 + NV2_2 + NV2_3 ) > 2 )
+
+score NO_NV3 2.0
+meta NO_NV3 (( NO_NV2 + NV3_1 ) > 1 )
+
+# Agravantes -- Para pontuar, precisam ao menos de um dos niveis acima pontuando
+
+
+score NO_NV_AG1 1.2
+meta NO_NV_AG1 (( NO_NV1 + NV_AG1 ) > 1 )
+
+score NO_NV_AG2 1.2
+meta NO_NV_AG2 (( NO_NV1 + NV_AG2_1 + NV_AG2_2 ) > 1 )
+
+score NO_EMPRESA 2.2
+meta NO_EMPRESA (( NO_NV1 + EMPRESA1_1 + EMPRESA1_2 + EMPRESA1_3 + EMPRESA1_4 ) > 4 )
+
+score NO_INVEST 2.2
+meta NO_INVEST (( NO_NV1 + INVEST1_1 + INVEST1_2 + INVEST1_3 + INVEST1_4 ) > 4 )
+
+score NO_CURRICULOFERNANDA 4.0
+meta NO_CURRICULOFERNANDA (( CURRICULOFERNANDA1 + CURRICULOFERNANDA2 + CURRICULOFERNANDA3 ) > 1 )
+
+score NO_DEBITOATRAZADO 3.0
+meta NO_DEBITOATRAZADO (( DEBITOATRAZADO1 + DEBITOATRAZADO2 + DEBITOATRAZADO3 ) > 2 )
+
+score NO_TOTALORCAMENTO 3.0
+meta NO_TOTALORCAMENTO (( TOTALORCAMENTO1 + TOTALORCAMENTO2 + TOTALORCAMENTO3 ) > 2 )
+
+score NO_NATURANAINTERNETB 3.0
+meta NO_NATURANAINTERNETB (( NATURANAINTERNETB1 + NATURANAINTERNETB2 + NATURANAINTERNETB3 ) > 2 )
+
+score NO_TRANSFERENCIATED 3.0
+meta NO_TRANSFERENCIATED (( TRANSFERENCIATED1 + TRANSFERENCIATED2 + TRANSFERENCIATED3 ) > 2 )
+
+score NO_CANAISADULTOSEMHD 6.0
+meta NO_CANAISADULTOSEMHD (( CANAISADULTOSEMHD1 + CANAISADULTOSEMHD2 + CANAISADULTOSEMHD3 ) > 1 )
+
+score NO_CANAISADULTOSEMHDX 6.0
+meta NO_CANAISADULTOSEMHDX (( CANAISADULTOSEMHDX1 + CANAISADULTOSEMHDX2 + CANAISADULTOSEMHDX3 ) > 1 )
+
+score NO_CASASBAHIAPEDIDO 5.0
+meta NO_CASASBAHIAPEDIDO (( CASASBAHIAPEDIDO1 + CASASBAHIAPEDIDO2 + CASASBAHIAPEDIDO3 ) > 2 )
+
+score NO_GANHOENTRE60E600PORDIA 5.0
+meta NO_GANHOENTRE60E600PORDIA (( GANHOENTRE60E600PORDIA1 + GANHOENTRE60E600PORDIA2 + GANHOENTRE60E600PORDIA3 ) > 2 )
+
+score NO_PEDIDOTRANSPORTADORA 4.0
+meta NO_PEDIDOTRANSPORTADORA (( PEDIDOTRANSPORTADORA1 + PEDIDOTRANSPORTADORA2 + PEDIDOTRANSPORTADORA3 ) > 2 )
+
+score NO_SANTANDERNEW 4.0
+meta NO_SANTANDERNEW (( SANTANDERNEW1 + SANTANDERNEW2 + SANTANDERNEW3 ) > 2 )
+
+score NO_GANHAR 2.5
+meta NO_GANHAR (( NO_NV1 + GANHAR1 + GANHAR2 + GANHAR3 ) > 3 )
+
+score NO_FESTA 2.5
+meta NO_FESTA (( NO_NV1 + FESTA1 + FESTA2 + FESTA3 ) > 3 )
+
+
+#### Regras de contorno
+score DUMP_ORACLE -4.0
+meta DUMP_ORACLE (( ORACLE1 + ORACLE2 ) > 1 )
+
+score LOGWATCH -8.0
+header LOGWATCH Subject =~ /Logwatch for/i
